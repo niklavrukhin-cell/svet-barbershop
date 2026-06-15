@@ -99,20 +99,63 @@ const animateGlow = () => {
 };
 animateGlow();
 
-// ===== Фильтр каталога по категориям =====
-const tabs = document.querySelectorAll(".stab");
 const serviceCards = document.querySelectorAll("#servicesGrid .service");
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((t) => t.classList.remove("is-active"));
-    tab.classList.add("is-active");
-    const filter = tab.dataset.filter;
-    serviceCards.forEach((card) => {
-      const show = filter === "all" || card.dataset.cat === filter;
-      card.style.display = show ? "" : "none";
+
+// ===== Окно каталога (все услуги по категориям) =====
+const catalogModal = document.getElementById("catalogModal");
+const catalogBody = document.getElementById("catalogBody");
+const openCatalogBtn = document.getElementById("openCatalog");
+const catGroups = [
+  { key: "strizhki", title: "Стрижки" },
+  { key: "boroda", title: "Борода и бритьё" },
+  { key: "kompleksy", title: "Комплексы" },
+  { key: "dop", title: "Дополнительные услуги" },
+];
+
+function buildCatalog() {
+  catalogBody.innerHTML = "";
+  catGroups.forEach((g) => {
+    const cards = [...serviceCards].filter((c) => c.dataset.cat === g.key);
+    if (!cards.length) return;
+    const group = document.createElement("div");
+    group.className = "cat-group";
+    const h = document.createElement("h4");
+    h.className = "cat-group__title";
+    h.textContent = g.title;
+    group.appendChild(h);
+    const ul = document.createElement("ul");
+    ul.className = "cat-list";
+    cards.forEach((card) => {
+      const name = card.querySelector("h4").textContent;
+      const price = card.querySelector(".service__price").textContent;
+      const li = document.createElement("li");
+      li.className = "cat-item";
+      li.innerHTML = `<span class="cat-item__name">${name}</span><span class="cat-item__dots"></span><span class="cat-item__price">${price}</span>`;
+      li.addEventListener("click", () => {
+        closeCatalog();
+        openService(card);
+      });
+      ul.appendChild(li);
     });
+    group.appendChild(ul);
+    catalogBody.appendChild(group);
   });
-});
+}
+function openCatalog() {
+  if (!catalogBody.children.length) buildCatalog();
+  catalogModal.classList.add("open");
+  catalogModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+function closeCatalog() {
+  catalogModal.classList.remove("open");
+  catalogModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+openCatalogBtn.addEventListener("click", openCatalog);
+catalogModal.querySelectorAll("[data-close-catalog]").forEach((el) =>
+  el.addEventListener("click", closeCatalog)
+);
 
 // ===== Модальное окно услуги =====
 const modal = document.getElementById("serviceModal");
@@ -150,7 +193,9 @@ modal.querySelectorAll("[data-close]").forEach((el) =>
   el.addEventListener("click", closeService)
 );
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && modal.classList.contains("open")) closeService();
+  if (e.key !== "Escape") return;
+  if (modal.classList.contains("open")) closeService();
+  else if (catalogModal.classList.contains("open")) closeCatalog();
 });
 
 // ===== Форма записи =====

@@ -77,19 +77,14 @@
 
   <!-- УСЛУГИ -->
   <section class="services" id="services">
-    <div class="section-head">
-      <p class="section-tag reveal">01 — каталог</p>
-      <h2 class="section-title reveal">Услуги и цены</h2>
+    <div class="services__head">
+      <div class="reveal">
+        <p class="section-tag">01 — каталог</p>
+        <h2 class="section-title services__title">Услуги и цены</h2>
+      </div>
+      <button class="services__all reveal" id="openCatalog">Все услуги →</button>
     </div>
-
-    <div class="services__tabs reveal">
-      <button class="stab is-active" data-filter="all">Все</button>
-      <button class="stab" data-filter="strizhki">Стрижки</button>
-      <button class="stab" data-filter="boroda">Борода и бритьё</button>
-      <button class="stab" data-filter="kompleksy">Комплексы</button>
-      <button class="stab" data-filter="dop">Дополнительные услуги</button>
-    </div>
-    <div class="services__grid" id="servicesGrid">
+    <div class="services__row" id="servicesGrid">
       <article class="service reveal" data-cat="strizhki" tabindex="0" role="button" aria-label="Подробнее: Мужская стрижка">
         <div class="service__img"><img src="assets/services/muzhskaya-strizhka.png" alt="Мужская стрижка" loading="lazy" /></div>
         <div class="service__body">
@@ -288,6 +283,16 @@
       </article>
     </div>
   </section>
+
+  <!-- Модальное окно: весь каталог по категориям -->
+  <div class="modal catalog" id="catalogModal" aria-hidden="true">
+    <div class="modal__overlay" data-close-catalog></div>
+    <div class="catalog__panel" role="dialog" aria-modal="true" aria-label="Каталог услуг">
+      <button class="modal__close" data-close-catalog aria-label="Закрыть">×</button>
+      <h3 class="catalog__title">Услуги и цены</h3>
+      <div class="catalog__body" id="catalogBody"></div>
+    </div>
+  </div>
 
   <!-- Модальное окно услуги -->
   <div class="modal" id="serviceModal" aria-hidden="true">
