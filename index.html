@@ -82,9 +82,15 @@
       <h2 class="section-title reveal">Услуги и цены</h2>
     </div>
 
-    <h3 class="services__cat reveal">Стрижки</h3>
-    <div class="services__grid">
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Мужская стрижка">
+    <div class="services__tabs reveal">
+      <button class="stab is-active" data-filter="all">Все</button>
+      <button class="stab" data-filter="strizhki">Стрижки</button>
+      <button class="stab" data-filter="boroda">Борода и бритьё</button>
+      <button class="stab" data-filter="kompleksy">Комплексы</button>
+      <button class="stab" data-filter="dop">Дополнительные услуги</button>
+    </div>
+    <div class="services__grid" id="servicesGrid">
+      <article class="service reveal" data-cat="strizhki" tabindex="0" role="button" aria-label="Подробнее: Мужская стрижка">
         <div class="service__img"><img src="assets/services/muzhskaya-strizhka.png" alt="Мужская стрижка" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Мужская стрижка</h4><span class="service__price">2 500 ₽</span></div>
@@ -98,7 +104,7 @@
           <p>Работаем в центре, рядом с метро Курская и Чкаловская. Тихий переулок, своя парковка, никакой суеты. Можно приехать без записи — просто оценить обстановку и выпить кофе.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Стрижка машинкой">
+      <article class="service reveal" data-cat="strizhki" tabindex="0" role="button" aria-label="Подробнее: Стрижка машинкой">
         <div class="service__img"><img src="assets/services/strizhka-mashinkoy.png" alt="Стрижка машинкой" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Стрижка машинкой</h4><span class="service__price">2 000 ₽</span></div>
@@ -112,7 +118,7 @@
           <p>Находимся в центре, в Басманном районе — рядом с метро Курская и Чкаловская. Тихий переулок, парковка рядом. Первый визит — с подарком: уход за кожей головы бесплатно. Запишись онлайн или приходи без записи.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Детская стрижка">
+      <article class="service reveal" data-cat="strizhki" tabindex="0" role="button" aria-label="Подробнее: Детская стрижка">
         <div class="service__img"><img src="assets/services/detskaya-strizhka.png" alt="Детская стрижка" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Детская стрижка (до 12 лет)</h4><span class="service__price">2 000 ₽</span></div>
@@ -126,11 +132,7 @@
           <p>Папа тоже может постричься в то же время — просто запишитесь на одно время к разным мастерам. Приходите.</p>
         </div>
       </article>
-    </div>
-
-    <h3 class="services__cat reveal">Борода и бритьё</h3>
-    <div class="services__grid">
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Моделирование бороды">
+      <article class="service reveal" data-cat="boroda" tabindex="0" role="button" aria-label="Подробнее: Моделирование бороды">
         <div class="service__img"><img src="assets/services/modelirovanie-borody.png" alt="Моделирование бороды" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Моделирование бороды</h4><span class="service__price">2 000 ₽</span></div>
@@ -144,7 +146,7 @@
           <p>Находимся в центре Москвы, в Басманном районе — рядом с метро Курская и Чкаловская. Спокойное место, куда удобно заехать после работы или в выходной.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Окантовка и укладка">
+      <article class="service reveal" data-cat="boroda" tabindex="0" role="button" aria-label="Подробнее: Окантовка и укладка">
         <div class="service__img"><img src="assets/services/okantovka.png" alt="Окантовка и укладка" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Окантовка и укладка</h4><span class="service__price">1 500 ₽</span></div>
@@ -158,7 +160,7 @@
           <p>Удобно совмещать со стрижкой: пока один мастер работает с волосами, другой занимается бородой. Или прийти отдельно — это займёт немного времени, но разница будет заметна сразу.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Бритьё шейвером Solomon's">
+      <article class="service reveal" data-cat="boroda" tabindex="0" role="button" aria-label="Подробнее: Бритьё шейвером Solomon's">
         <div class="service__img"><img src="assets/services/britye-shaver.png" alt="Бритьё шейвером Solomon's" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Бритьё шейвером / электробритвой Solomon's</h4><span class="service__price">2 500 ₽</span></div>
@@ -172,7 +174,7 @@
           <p>Бритьё можно совместить со стрижкой или моделированием бороды — мастер подберёт последовательность под конкретный запрос.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Бритьё опасной бритвой Solomon's">
+      <article class="service reveal" data-cat="boroda" tabindex="0" role="button" aria-label="Подробнее: Бритьё опасной бритвой Solomon's">
         <div class="service__img"><img src="assets/services/britye-opasnaya.png" alt="Бритьё опасной бритвой Solomon's" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Бритьё опасной бритвой Solomon's</h4><span class="service__price">2 500 ₽</span></div>
@@ -186,11 +188,7 @@
           <p>Услуга подходит и тем, кто хочет попробовать впервые, и тем, кто уже знает разницу и ищет место, где это делают правильно. Мастер расскажет, как подготовить кожу дома между визитами.</p>
         </div>
       </article>
-    </div>
-
-    <h3 class="services__cat reveal">Комплексы</h3>
-    <div class="services__grid">
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Стрижка + уход + борода">
+      <article class="service reveal" data-cat="kompleksy" tabindex="0" role="button" aria-label="Подробнее: Стрижка + уход + борода">
         <div class="service__img"><img src="assets/services/kompleks-5000.png" alt="Комплекс: стрижка + уход за лицом + борода" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Стрижка + уход за лицом + премиальное оформление бороды</h4><span class="service__price">5 000 ₽</span></div>
@@ -204,7 +202,7 @@
           <p>Подходит как подготовка к важному событию или как регулярный визит раз в месяц. Записаться можно онлайн или прийти без записи.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Стрижка + моделирование бороды">
+      <article class="service reveal" data-cat="kompleksy" tabindex="0" role="button" aria-label="Подробнее: Стрижка + моделирование бороды">
         <div class="service__img"><img src="assets/services/kompleks-4000.png" alt="Комплекс: стрижка + моделирование бороды" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Стрижка + моделирование бороды</h4><span class="service__price">4 000 ₽</span></div>
@@ -218,7 +216,7 @@
           <p>Удобно брать на регулярной основе: образ поддерживается, не «расползается» между визитами. На первый визит — уход за кожей головы в подарок.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом + борода">
+      <article class="service reveal" data-cat="kompleksy" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом + борода">
         <div class="service__img"><img src="assets/services/kompleks-3000.png" alt="Комплекс: уход за лицом + борода" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Уход за лицом + премиальное оформление бороды</h4><span class="service__price">3 000 ₽</span></div>
@@ -232,11 +230,7 @@
           <p>Подходит как регулярная процедура — раз в три-четыре недели кожа и борода возвращаются в форму.</p>
         </div>
       </article>
-    </div>
-
-    <h3 class="services__cat reveal">Дополнительные услуги</h3>
-    <div class="services__grid">
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом Mr. Q">
+      <article class="service reveal" data-cat="dop" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом Mr. Q">
         <div class="service__img"><img src="assets/services/uhod-mrq.png" alt="Уход за лицом Mr. Q" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Уход за лицом Mr. Q</h4><span class="service__price">1 500 ₽</span></div>
@@ -250,7 +244,7 @@
           <p>Мы считаем, что полный образ требует полного подхода.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом Inglorious Mariner">
+      <article class="service reveal" data-cat="dop" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом Inglorious Mariner">
         <div class="service__img"><img src="assets/services/uhod-mariner.png" alt="Уход за лицом Inglorious Mariner" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Уход за лицом Inglorious Mariner</h4><span class="service__price">1 000 ₽</span></div>
@@ -264,7 +258,7 @@
           <p>Уход можно совместить со стрижкой или бритьём — мастер подберёт последовательность. Или прийти отдельно, если просто нужно привести кожу в порядок после долгой недели.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Детокс-уход за кожей головы Luxina">
+      <article class="service reveal" data-cat="dop" tabindex="0" role="button" aria-label="Подробнее: Детокс-уход за кожей головы Luxina">
         <div class="service__img"><img src="assets/services/detoks-luxina.png" alt="Детокс-уход за кожей головы Luxina" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Детокс-уход за кожей головы Luxina</h4><span class="service__price">1 000 ₽</span></div>
@@ -278,7 +272,7 @@
           <p>А на первый визит уход за кожей головы идёт в подарок — хороший повод попробовать.</p>
         </div>
       </article>
-      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Удаление воском">
+      <article class="service reveal" data-cat="dop" tabindex="0" role="button" aria-label="Подробнее: Удаление воском">
         <div class="service__img"><img src="assets/services/udalenie-voskom.png" alt="Удаление воском" loading="lazy" /></div>
         <div class="service__body">
           <div class="service__top"><h4>Удаление воском</h4><span class="service__price">700 ₽</span></div>

@@ -99,6 +99,21 @@ const animateGlow = () => {
 };
 animateGlow();
 
+// ===== Фильтр каталога по категориям =====
+const tabs = document.querySelectorAll(".stab");
+const serviceCards = document.querySelectorAll("#servicesGrid .service");
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => t.classList.remove("is-active"));
+    tab.classList.add("is-active");
+    const filter = tab.dataset.filter;
+    serviceCards.forEach((card) => {
+      const show = filter === "all" || card.dataset.cat === filter;
+      card.style.display = show ? "" : "none";
+    });
+  });
+});
+
 // ===== Модальное окно услуги =====
 const modal = document.getElementById("serviceModal");
 const modalImg = document.getElementById("modalImg");

@@ -324,24 +324,39 @@ section { position: relative; z-index: 2; }
 
 /* ===== Услуги ===== */
 .services { padding: 120px 48px; }
-.services__cat {
+.services__tabs {
   max-width: 1200px;
-  margin: 64px auto 24px;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
-  letter-spacing: 0.04rem;
+  margin: 0 auto 44px;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  color: var(--text);
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
 }
-.services__cat::after {
+.stab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.92rem;
+  letter-spacing: 0.02rem;
+  color: var(--muted);
+  padding: 10px 0;
+  position: relative;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.stab::after {
   content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--line);
+  position: absolute;
+  left: 0; bottom: -5px;
+  width: 0; height: 2px;
+  background: var(--light);
+  transition: width 0.4s var(--ease);
 }
+.stab:hover { color: var(--text); }
+.stab.is-active { color: var(--light); }
+.stab.is-active::after { width: 100%; }
 .services__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
