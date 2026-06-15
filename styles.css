@@ -203,15 +203,6 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   will-change: transform, opacity;
 }
-.hero__sun::after {
-  content: "";
-  position: absolute;
-  left: 50%; top: 50%;
-  width: 60%; height: 2px;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(90deg, transparent, var(--light-soft), transparent);
-  box-shadow: 0 0 28px 4px var(--glow);
-}
 @keyframes breathe {
   0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
   50% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
