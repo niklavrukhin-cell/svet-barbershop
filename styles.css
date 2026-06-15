@@ -760,6 +760,13 @@ section { position: relative; z-index: 2; }
   letter-spacing: 0.18rem;
   text-transform: uppercase;
 }
+.quote cite a {
+  color: var(--light);
+  border-bottom: 1px solid rgba(246,231,196,0.4);
+  padding-bottom: 2px;
+  transition: border-color 0.3s, opacity 0.3s;
+}
+.quote cite a:hover { border-color: var(--light); opacity: 0.85; }
 
 /* ===== Контакты ===== */
 .contacts {
