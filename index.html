@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>СВЕТ — барбершоп на Чкаловской</title>
+  <meta name="description" content="Барбершоп СВЕТ на Чкаловской (Москва, Большой Полуярославский пер., 10к2). Стрижка, борода, уход. Рейтинг 5.0. Запись онлайн, выезд на дом." />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Прелоадер -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__sun"></div>
+    <div class="preloader__word">СВЕТ</div>
+  </div>
+
+  <!-- Свечение, следящее за курсором -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Шапка -->
+  <header class="header" id="header">
+    <a href="#hero" class="header__logo">СВЕТ</a>
+    <nav class="nav" id="nav">
+      <a href="#services">Услуги</a>
+      <a href="#masters">Мастера</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--ghost header__cta">Записаться</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__sun"></div>
+    <div class="hero__grain"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal">барбершоп на чкаловской · москва</p>
+      <h1 class="hero__title">
+        <span class="hero__title-line reveal">СВЕТ</span>
+      </h1>
+      <p class="hero__sub reveal">Барбершоп на Чкаловской. Стрижка, борода и королевское бритьё<br />от мастеров, к которым возвращаются годами.</p>
+      <div class="hero__actions reveal">
+        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid">Записаться онлайн</a>
+        <a href="#services" class="btn btn--ghost">Смотреть услуги</a>
+      </div>
+    </div>
+    <div class="hero__scroll reveal">
+      <span>листай вниз</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- АКЦИЯ -->
+  <section class="promo">
+    <div class="promo__inner reveal">
+      <div class="promo__badge">акция</div>
+      <h2 class="promo__title">−20% на первый визит к барберу <span class="accent">Сергею</span></h2>
+      <p class="promo__text">Знакомимся и влюбляем в себя. Действует до 31 декабря 2026 года.</p>
+      <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid">Поймать скидку</a>
+    </div>
+  </section>
+
+  <!-- ПРЕИМУЩЕСТВА -->
+  <section class="perks">
+    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Запись онлайн</h3></div>
+    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Выезд на дом</h3></div>
+    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Оплата картой</h3></div>
+    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Wi-Fi и комфорт</h3></div>
+  </section>
+
+  <!-- УСЛУГИ -->
+  <section class="services" id="services">
+    <div class="section-head">
+      <p class="section-tag reveal">01 — каталог</p>
+      <h2 class="section-title reveal">Услуги и цены</h2>
+    </div>
+
+    <h3 class="services__cat reveal">Стрижки</h3>
+    <div class="services__grid">
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Мужская стрижка">
+        <div class="service__img"><img src="assets/services/muzhskaya-strizhka.png" alt="Мужская стрижка" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Мужская стрижка</h4><span class="service__price">2 500 ₽</span></div>
+          <p>Не просто смена длины — форма, которая работает на тебя каждый день.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Мужская стрижка — не просто смена длины. Это разговор о форме, которая будет работать на тебя каждый день после.</p>
+          <p>В «Свете» стрижка начинается с диалога. Мастер смотрит на форму головы, густоту, характер роста — и только потом берёт инструменты. Работаем исключительно стерилизованными ножницами и машинками профессионального класса. Никаких компромиссов с инструментом.</p>
+          <p>Стрижка мужская в Москве давно стала массовым сервисом, где скорость важнее результата. Мы придерживаемся другого подхода: делаем так, чтобы форма держалась и через неделю, и через две. Если нужен совет по укладке или уходу — скажем.</p>
+          <p>Работаем в центре, рядом с метро Курская и Чкаловская. Тихий переулок, своя парковка, никакой суеты. Можно приехать без записи — просто оценить обстановку и выпить кофе.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Стрижка машинкой">
+        <div class="service__img"><img src="assets/services/strizhka-mashinkoy.png" alt="Стрижка машинкой" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Стрижка машинкой</h4><span class="service__price">2 000 ₽</span></div>
+          <p>Чёткая форма и минимум ухода дома. Результат, который держится.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Стрижка машинкой — выбор тех, кто знает, чего хочет: чёткая форма, минимум возни дома, результат, который держится.</p>
+          <p>Но исполнение решает всё. Переходы между насадками, симметрия висков, окантовка — именно здесь видна разница между мастером и случайным человеком с машинкой. Мужская стрижка под машинку требует той же точности, что и работа ножницами.</p>
+          <p>В «Свете» используем профессиональный инструмент — без изношенных ножей. Всё стерилизуется перед каждым клиентом. Мастер уточнит детали перед началом работы.</p>
+          <p>Находимся в центре, в Басманном районе — рядом с метро Курская и Чкаловская. Тихий переулок, парковка рядом. Первый визит — с подарком: уход за кожей головы бесплатно. Запишись онлайн или приходи без записи.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Детская стрижка">
+        <div class="service__img"><img src="assets/services/detskaya-strizhka.png" alt="Детская стрижка" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Детская стрижка (до 12 лет)</h4><span class="service__price">2 000 ₽</span></div>
+          <p>Спокойно и без суеты — мастер найдёт подход к ребёнку.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Детская стрижка — задача, где важна не только техника, но и обстановка. Ребёнок должен чувствовать себя спокойно, иначе ни о каком результате говорить не приходится.</p>
+          <p>В «Свете» нет детского хаоса и очередей. Спокойная атмосфера, негромко, без суеты — именно то, что нужно, чтобы мальчик не нервничал с первых минут. Любой мастер работает с детьми: умеет разговорить, не торопит и делает всё аккуратно.</p>
+          <p>Стрижка мальчику выполняется теми же стерилизованными инструментами, что и взрослым. Никаких компромиссов с гигиеной. Мастер уточнит пожелания — у родителя и, если ребёнок постарше, у него самого.</p>
+          <p>Папа тоже может постричься в то же время — просто запишитесь на одно время к разным мастерам. Приходите.</p>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="services__cat reveal">Борода и бритьё</h3>
+    <div class="services__grid">
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Моделирование бороды">
+        <div class="service__img"><img src="assets/services/modelirovanie-borody.png" alt="Моделирование бороды" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Моделирование бороды</h4><span class="service__price">2 000 ₽</span></div>
+          <p>Форма под овал лица: густота, длина, контур и стиль.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Борода — не фон. Она либо работает на образ, либо мешает ему. Разница между этими двумя состояниями — в форме, контуре и регулярном уходе.</p>
+          <p>Моделирование бороды в «Свете» начинается с разговора. Мастер смотрит на форму лица, густоту, характер роста и то, как борода соотносится со стрижкой. Только после этого — инструменты. Работаем стерилизованными машинками и ножницами, без компромиссов с качеством.</p>
+          <p>Оформление бороды — это не только длина. Это линия щёк, контур на шее, переход к усам и симметрия. Детали, которые большинство не замечает сознательно, но сразу чувствует разницу.</p>
+          <p>Находимся в центре Москвы, в Басманном районе — рядом с метро Курская и Чкаловская. Спокойное место, куда удобно заехать после работы или в выходной.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Окантовка и укладка">
+        <div class="service__img"><img src="assets/services/okantovka.png" alt="Окантовка и укладка" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Окантовка и укладка</h4><span class="service__price">1 500 ₽</span></div>
+          <p>Чёткий контур и укладка — борода собрана и держит форму весь день.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Борода выглядит хорошо ровно до того момента, как перестаёт быть аккуратной. Чёткий контур и правильная укладка — то, что удерживает форму между полноценными визитами на моделирование.</p>
+          <p>Окантовка и укладка бороды в «Свете» — это комбинированная услуга: мастер выравнивает линии по щекам и шее, убирает выбившиеся волоски и фиксирует форму. Никакой самодеятельности — работаем стерилизованным инструментом, аккуратно и по делу.</p>
+          <p>Услуга подходит тем, кто уже знает свою форму и хочет её поддержать, а не менять. Укладка завершает визит — борода выглядит собранно и держит форму в течение дня.</p>
+          <p>Удобно совмещать со стрижкой: пока один мастер работает с волосами, другой занимается бородой. Или прийти отдельно — это займёт немного времени, но разница будет заметна сразу.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Бритьё шейвером Solomon's">
+        <div class="service__img"><img src="assets/services/britye-shaver.png" alt="Бритьё шейвером Solomon's" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Бритьё шейвером / электробритвой Solomon's</h4><span class="service__price">2 500 ₽</span></div>
+          <p>Чистое щадящее бритьё без раздражения — гладко и аккуратно.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Шейвер — выбор тех, кто предпочитает чистое лицо без щетины, но хочет щадящего воздействия на кожу. Без лезвия, без раздражения — и при этом аккуратный результат.</p>
+          <p>Бритьё шейвером в «Свете» выполняется с продуктами Solomon's: кожа подготавливается перед работой, после — успокаивающий уход. Это не просто «прошлись машинкой» — мастер контролирует давление, направление и равномерность по всей поверхности. Результат выглядит аккуратно и держится.</p>
+          <p>Услуга особенно подходит тем, у кого чувствительная кожа или кто регулярно сталкивается с раздражением после бритья дома. Профессиональный шейвер и правильная техника — разница ощутима.</p>
+          <p>Бритьё можно совместить со стрижкой или моделированием бороды — мастер подберёт последовательность под конкретный запрос.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Бритьё опасной бритвой Solomon's">
+        <div class="service__img"><img src="assets/services/britye-opasnaya.png" alt="Бритьё опасной бритвой Solomon's" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Бритьё опасной бритвой Solomon's</h4><span class="service__price">2 500 ₽</span></div>
+          <p>Классический ритуал: горячее полотенце, опасная бритва, идеальная гладкость.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Бритьё опасной бритвой — услуга, которую предлагают единицы. Не потому что сложно найти бритву, а потому что это требует уверенной руки и понимания того, что ты делаешь.</p>
+          <p>В «Свете» бритьё выполняется с продуктами Solomon's — бренда, который специализируется на классическом уходе за кожей во время бритья. Подготовка кожи, горячее полотенце, нанесение крема — всё это часть процесса, а не опция. Бритьё опасной бритвой в таком формате — это уже не просто удаление волос, а отдельный ритуал.</p>
+          <p>Результат отличается от бритья станком: более чистое и гладкое ощущение, меньше раздражения. Кожа после — без красноты, без ощущения «ожога».</p>
+          <p>Услуга подходит и тем, кто хочет попробовать впервые, и тем, кто уже знает разницу и ищет место, где это делают правильно. Мастер расскажет, как подготовить кожу дома между визитами.</p>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="services__cat reveal">Комплексы</h3>
+    <div class="services__grid">
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Стрижка + уход + борода">
+        <div class="service__img"><img src="assets/services/kompleks-5000.png" alt="Комплекс: стрижка + уход за лицом + борода" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Стрижка + уход за лицом + премиальное оформление бороды</h4><span class="service__price">5 000 ₽</span></div>
+          <p>Полная перезагрузка образа за один визит.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Есть визиты, после которых выходишь и понимаешь: вот так и должно быть. Стрижка на месте, борода оформлена, кожа в порядке. Всё вместе — и всё за один раз.</p>
+          <p>Полный комплекс в «Свете» — это стрижка, уход за лицом и премиальное оформление бороды в одном визите. Мастер работает с образом целиком: форма стрижки согласуется с контуром бороды, уход за кожей подбирается под её состояние. Не три отдельные услуги — одна работа с результатом.</p>
+          <p>Премиум барбершоп в Москве — это не про интерьер и не про цену. Это про то, чтобы мастер думал за тебя: видел, что нужно скорректировать, предлагал решения, работал с профессиональной косметикой Mr. Q или Inglorious Mariner.</p>
+          <p>Подходит как подготовка к важному событию или как регулярный визит раз в месяц. Записаться можно онлайн или прийти без записи.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Стрижка + моделирование бороды">
+        <div class="service__img"><img src="assets/services/kompleks-4000.png" alt="Комплекс: стрижка + моделирование бороды" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Стрижка + моделирование бороды</h4><span class="service__price">4 000 ₽</span></div>
+          <p>Стрижка и оформление бороды — цельный законченный образ.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Стрижка и борода — два элемента, которые работают вместе. Менять одно без другого — всё равно что покрасить одну стену в комнате. Результат есть, но не тот.</p>
+          <p>Комплекс стрижка и борода в «Свете» — это один визит, в котором мастер видит образ целиком. Стрижка и моделирование бороды выстраиваются относительно друг друга: форма головы, длина, контур — всё согласуется. Так получается цельный результат, а не набор отдельных услуг.</p>
+          <p>Выбор тех, кто ценит время и хочет уйти с готовым образом за один визит. Без беготни, без второго мастера, без «приходи завтра на бороду». Работаем стерилизованным инструментом профессионального класса.</p>
+          <p>Удобно брать на регулярной основе: образ поддерживается, не «расползается» между визитами. На первый визит — уход за кожей головы в подарок.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом + борода">
+        <div class="service__img"><img src="assets/services/kompleks-3000.png" alt="Комплекс: уход за лицом + борода" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Уход за лицом + премиальное оформление бороды</h4><span class="service__price">3 000 ₽</span></div>
+          <p>Уход за кожей и премиальное оформление бороды.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Борода и кожа лица — связанные вещи. Качественное оформление бороды без ухода за кожей под ней — это полработы. Кожа реагирует на бритьё, на продукты, на городской воздух. Её состояние влияет на то, как выглядит борода.</p>
+          <p>Комплекс «уход за лицом и борода» в «Свете» — это процедура, где обе части работают в связке. Мастер сначала приводит кожу в порядок, затем оформляет бороду: контур, форма, укладка. Результат держится дольше, выглядит аккуратнее.</p>
+          <p>Уход за лицом выполняется с профессиональной косметикой — Mr. Q или Inglorious Mariner, в зависимости от типа кожи. Не универсальный крем «для всех», а подбор под конкретного человека. Оформление бороды — стерилизованный инструмент, диалог с мастером до начала работы.</p>
+          <p>Подходит как регулярная процедура — раз в три-четыре недели кожа и борода возвращаются в форму.</p>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="services__cat reveal">Дополнительные услуги</h3>
+    <div class="services__grid">
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом Mr. Q">
+        <div class="service__img"><img src="assets/services/uhod-mrq.png" alt="Уход за лицом Mr. Q" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Уход за лицом Mr. Q</h4><span class="service__price">1 500 ₽</span></div>
+          <p>Премиальный комплексный уход за кожей лица.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Уход за кожей лица — то, о чём большинство мужчин думает в последнюю очередь. И зря: кожа реагирует на всё — на бритьё, на городской воздух, на усталость. Без ухода это накапливается.</p>
+          <p>В «Свете» уход за лицом выполняется с продуктами Mr. Q — линейкой, созданной специально для мужской кожи. Не универсальная косметика «для всех», а формулы под конкретные задачи: очищение, увлажнение, восстановление после бритья. Мастер подбирает процедуру под состояние кожи — сухая, жирная, склонная к раздражению.</p>
+          <p>Мужской уход за лицом в барбершопе отличается от похода в салон красоты: никакой лишней атмосферы, только по делу. Спокойно, без суеты — именно так устроен «Свет». Можно совместить с любой другой услугой или прийти отдельно.</p>
+          <p>Мы считаем, что полный образ требует полного подхода.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Уход за лицом Inglorious Mariner">
+        <div class="service__img"><img src="assets/services/uhod-mariner.png" alt="Уход за лицом Inglorious Mariner" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Уход за лицом Inglorious Mariner</h4><span class="service__price">1 000 ₽</span></div>
+          <p>Морская эстетика и лаконичный уход за кожей лица.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Inglorious Mariner — бренд с характером. Морская эстетика, лаконичный подход, продукты без лишнего. Уход за кожей с этой линейкой — без пафоса, но с результатом.</p>
+          <p>В «Свете» уход за лицом Inglorious Mariner — это процедура для тех, кто хочет нормально выглядеть, не превращая это в ритуал. Очищение, увлажнение, восстановление — мастер работает с кожей под её состояние, без шаблонного подхода.</p>
+          <p>Мужские процедуры для лица в барбершопе — всё ещё редкость. В «Свете» считают иначе: внешний вид — это не только волосы и борода. Кожа — тоже часть образа.</p>
+          <p>Уход можно совместить со стрижкой или бритьём — мастер подберёт последовательность. Или прийти отдельно, если просто нужно привести кожу в порядок после долгой недели.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Детокс-уход за кожей головы Luxina">
+        <div class="service__img"><img src="assets/services/detoks-luxina.png" alt="Детокс-уход за кожей головы Luxina" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Детокс-уход за кожей головы Luxina</h4><span class="service__price">1 000 ₽</span></div>
+          <p>Глубокое очищение кожи головы и перезагрузка для волос.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Кожа головы — то, о чём обычно не думают, пока не появляется проблема. Сухость, зуд, ощущение стянутости или, наоборот, жирность к середине дня — всё это сигналы, что коже нужна помощь.</p>
+          <p>Детокс-уход за кожей головы в «Свете» выполняется с продуктами Luxina — итальянской профессиональной линейкой, ориентированной на здоровье кожи и волос. Не косметика для объёма и блеска, а уход, который работает на уровне кожи: очищает, восстанавливает баланс, снимает раздражение.</p>
+          <p>Процедура подходит тем, кто носит короткие стрижки и регулярно стрижётся машинкой — кожа головы при этом испытывает нагрузку, которую стоит периодически снимать.</p>
+          <p>А на первый визит уход за кожей головы идёт в подарок — хороший повод попробовать.</p>
+        </div>
+      </article>
+      <article class="service reveal" tabindex="0" role="button" aria-label="Подробнее: Удаление воском">
+        <div class="service__img"><img src="assets/services/udalenie-voskom.png" alt="Удаление воском" loading="lazy" /></div>
+        <div class="service__body">
+          <div class="service__top"><h4>Удаление воском</h4><span class="service__price">700 ₽</span></div>
+          <p>Аккуратное удаление лишних волос воском — чисто и быстро.</p>
+          <span class="service__more">Подробнее →</span>
+        </div>
+        <div class="service__full" hidden>
+          <p>Аккуратный внешний вид — это детали. Стрижка и борода могут быть идеальными, но лишние волоски в ушах, носу или над бровями сводят результат на нет. Мелочь, которую все замечают.</p>
+          <p>Удаление воском в «Свете» — быстрая и точная процедура. Уши, нос, брови — мастер убирает лишнее аккуратно, без лишних движений. Воск работает чище и держит результат дольше, чем машинка или ножницы: волосок удаляется с корнем, кожа остаётся гладкой.</p>
+          <p>В «Свете» это часть обычного мужского визита — без лишнего внимания и неловкости.</p>
+          <p>Удобно добавить к стрижке или бритью: займёт несколько минут, но разница в итоговом образе заметна. Мастер сам предложит, если увидит необходимость.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Модальное окно услуги -->
+  <div class="modal" id="serviceModal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" data-close aria-label="Закрыть">×</button>
+      <div class="modal__img"><img id="modalImg" src="" alt="" /></div>
+      <div class="modal__content">
+        <div class="modal__top">
+          <h3 id="modalTitle"></h3>
+          <span class="modal__price" id="modalPrice"></span>
+        </div>
+        <div class="modal__desc" id="modalDesc"></div>
+        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid modal__cta">Записаться онлайн</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЦИФРЫ -->
+  <section class="stats">
+    <div class="stat reveal"><span class="stat__num" data-target="5" data-suffix=".0">0</span><span class="stat__label">рейтинг на картах</span></div>
+    <div class="stat reveal"><span class="stat__num" data-target="5" data-suffix="+">0</span><span class="stat__label">лет опыта мастеров</span></div>
+    <div class="stat reveal"><span class="stat__num" data-target="10" data-suffix="/10">0</span><span class="stat__label">качество стрижки</span></div>
+  </section>
+
+  <!-- МАСТЕРА -->
+  <section class="masters" id="masters">
+    <div class="section-head">
+      <p class="section-tag reveal">02 — команда</p>
+      <h2 class="section-title reveal">Наши мастера</h2>
+    </div>
+    <div class="masters__grid">
+      <article class="master reveal">
+        <div class="master__photo" data-initials="А"></div>
+        <h3>Артём</h3>
+        <p>Барбер · чувствует образ и воплощает любую идею</p>
+      </article>
+      <article class="master reveal">
+        <div class="master__photo" data-initials="Б"></div>
+        <h3>Борис</h3>
+        <p>Барбер · к нему возвращаются годами</p>
+      </article>
+      <article class="master reveal">
+        <div class="master__photo" data-initials="С"></div>
+        <h3>Сергей</h3>
+        <p>Барбер · стрижка и королевское бритьё · −20% новичкам</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВ -->
+  <section class="quote">
+    <div class="quote__sun"></div>
+    <blockquote class="reveal">
+      «Редко пишу отзывы, но тут мастера покорили моё сердце. Подстригли ровно так, как я хотел, дали совет по укладке. Чистота, красивый дизайн и сервис — рекомендую!»
+    </blockquote>
+    <cite class="reveal">— Осман Караев</cite>
+  </section>
+
+  <!-- КОНТАКТЫ / ЗАПИСЬ -->
+  <section class="contacts" id="contacts">
+    <div class="contacts__info">
+      <p class="section-tag reveal">03 — запись</p>
+      <h2 class="section-title reveal">Записаться</h2>
+      <p class="contacts__lead reveal">Оставь заявку — перезвоним и подберём удобное время. Или запишись онлайн в пару кликов.</p>
+      <ul class="contacts__list reveal">
+        <li><span>Адрес</span> Москва, Большой Полуярославский пер., 10, корп. 2 (м. Чкаловская)</li>
+        <li><span>Телефон</span> <a href="tel:+79669791100">+7 (966) 979-11-00</a></li>
+        <li><span>Telegram</span> <a href="https://t.me/SvetHairMoscow" target="_blank" rel="noopener">@SvetHairMoscow</a></li>
+        <li><span>Запись</span> <a href="https://n365899.yclients.com" target="_blank" rel="noopener">онлайн через YClients</a></li>
+      </ul>
+    </div>
+    <form class="form reveal" id="bookForm">
+      <div class="form__row">
+        <input type="text" name="name" placeholder="Как вас зовут" required />
+      </div>
+      <div class="form__row">
+        <input type="tel" name="phone" placeholder="Телефон" required />
+      </div>
+      <div class="form__row">
+        <select name="service" required>
+          <option value="" disabled selected>Выберите услугу</option>
+          <option>Мужская стрижка — 2 500 ₽</option>
+          <option>Стрижка машинкой — 2 000 ₽</option>
+          <option>Детская стрижка (до 12 лет) — 2 000 ₽</option>
+          <option>Моделирование бороды — 2 000 ₽</option>
+          <option>Окантовка и укладка — 1 500 ₽</option>
+          <option>Бритьё шейвером / электробритвой Solomon's — 2 500 ₽</option>
+          <option>Бритьё опасной бритвой Solomon's — 2 500 ₽</option>
+          <option>Комплекс: стрижка + уход + борода — 5 000 ₽</option>
+          <option>Комплекс: стрижка + борода — 4 000 ₽</option>
+          <option>Комплекс: уход + борода — 3 000 ₽</option>
+          <option>Уход за лицом Mr. Q — 1 500 ₽</option>
+          <option>Уход за лицом Inglorious Mariner — 1 000 ₽</option>
+          <option>Детокс-уход за кожей головы Luxina — 1 000 ₽</option>
+          <option>Удаление воском — 700 ₽</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn--solid form__submit">Записаться</button>
+      <p class="form__note" id="formNote"></p>
+    </form>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer class="footer">
+    <div class="footer__brand">СВЕТ</div>
+    <p class="footer__copy">© 2026 барбершоп СВЕТ. Все права защищены.</p>
+    <a href="#hero" class="footer__top">наверх ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
