@@ -197,15 +197,3 @@ document.addEventListener("keydown", (e) => {
   if (modal.classList.contains("open")) closeService();
   else if (catalogModal.classList.contains("open")) closeCatalog();
 });
-
-// ===== Форма записи =====
-const form = document.getElementById("bookForm");
-const note = document.getElementById("formNote");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = form.name.value.trim();
-  note.textContent = `${name ? name + ", спасибо" : "Спасибо"}! Заявка принята — перезвоним в течение 15 минут.`;
-  note.classList.add("show");
-  form.reset();
-  setTimeout(() => note.classList.remove("show"), 6000);
-});

@@ -801,41 +801,47 @@ section { position: relative; z-index: 2; }
 .contacts__list a { transition: color 0.3s; }
 .contacts__list a:hover { color: var(--light); }
 
-/* ===== Форма ===== */
-.form {
-  background: var(--bg-soft);
+/* ===== Блок онлайн-записи ===== */
+.booking {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(246,231,196,0.10), transparent 60%),
+    var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 42px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.form input, .form select {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--line);
-  padding: 16px 2px;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 300;
-  transition: border-color 0.4s;
-}
-.form input::placeholder { color: var(--muted); }
-.form input:focus, .form select:focus { outline: none; border-color: var(--light); }
-.form select option { background: #0c0c0d; color: var(--text); }
-.form__submit { margin-top: 12px; width: 100%; }
-.form__note {
-  font-size: 0.85rem;
-  color: var(--light);
+  padding: 56px 44px;
   text-align: center;
-  min-height: 1em;
-  opacity: 0;
-  transition: opacity 0.4s;
 }
-.form__note.show { opacity: 1; }
+.booking__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28rem;
+  text-transform: uppercase;
+  color: var(--light);
+  opacity: 0.75;
+  margin-bottom: 16px;
+}
+.booking__title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin-bottom: 14px;
+}
+.booking__text {
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 380px;
+  margin: 0 auto 30px;
+}
+.booking__btn { padding: 17px 40px; }
+.booking__or {
+  margin-top: 22px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.booking__or a {
+  color: var(--light);
+  transition: opacity 0.3s;
+}
+.booking__or a:hover { opacity: 0.8; }
 
 /* ===== Футер ===== */
 .footer {
