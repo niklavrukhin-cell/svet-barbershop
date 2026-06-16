@@ -913,7 +913,7 @@ section { position: relative; z-index: 2; }
 
 /* ===== Адаптив ===== */
 @media (max-width: 900px) {
-  .header, .manifest, .services, .masters, .gallery, .contacts, .quote, .stats, .footer { padding-left: 24px; padding-right: 24px; }
+  .header, .manifest, .services, .masters, .gallery, .contacts, .quote, .stats, .footer, .promo { padding-left: 24px; padding-right: 24px; }
   .contacts { grid-template-columns: 1fr; gap: 48px; }
   .stats { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
   .gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
@@ -939,11 +939,89 @@ section { position: relative; z-index: 2; }
   .modal__panel { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
   .modal__img { aspect-ratio: 1/1; max-height: 50vh; }
 }
-@media (max-width: 520px) {
-  .stats { grid-template-columns: 1fr; }
-  .gallery__grid { grid-template-columns: 1fr; }
-  .gallery__item--wide { grid-column: span 1; }
-  .form { padding: 28px; }
+
+/* ===== Телефоны ===== */
+@media (max-width: 600px) {
+  /* компактные вертикальные отступы вместо огромных */
+  .services { padding: 70px 18px; }
+  .masters { padding: 70px 18px; }
+  .contacts { padding: 64px 18px; gap: 40px; }
+  .quote { padding: 80px 22px; }
+  .stats { padding: 60px 18px; grid-template-columns: 1fr; gap: 30px; }
+  .manifest { padding: 80px 22px; }
+
+  /* шапка */
+  .header { padding: 18px 18px; }
+  .header.scrolled { padding: 12px 18px; }
+  .header__logo { font-size: 1.3rem; letter-spacing: 0.4rem; text-indent: 0.4rem; }
+
+  /* hero */
+  .hero { min-height: 100svh; }
+  .hero__content { padding: 0 20px; }
+  .hero__eyebrow { font-size: 0.68rem; letter-spacing: 0.28rem; margin-bottom: 18px; }
+  .hero__sub { font-size: 1rem; margin-bottom: 30px; }
+  .hero__actions { width: 100%; gap: 12px; }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+  .hero__scroll { bottom: 24px; }
+
+  /* кнопки крупнее под палец */
+  .btn { padding: 14px 28px; }
+
+  /* акции */
+  .promo { padding: 24px 16px 0; }
+  .promo__inner { padding: 40px 22px; }
+  .promo__title { font-size: 1.55rem; }
+  .promo__badge { margin-bottom: 18px; }
+  .promo__text { margin-bottom: 26px; }
+
+  /* преимущества — 2 в ряд */
+  .perks { margin: 50px 16px 0; grid-template-columns: 1fr 1fr; }
+  .perk { padding: 28px 14px; gap: 10px; }
+  .perk h3 { font-size: 1.1rem; }
+
+  /* услуги: заголовок и кнопка в столбик */
+  .services__head { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 26px; }
+  .services__all { width: 100%; text-align: center; }
+  .services__row { gap: 16px; }
+  .services__row .service { flex: 0 0 80vw; }
+  .service__body { padding: 20px 20px 24px; }
+
+  /* мастера — 2 в ряд, буква чуть меньше */
+  .masters__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .master__photo { margin-bottom: 16px; }
+  .master__photo::before { font-size: 2.6rem; }
+  .master h3 { font-size: 1.2rem; }
+  .master p { font-size: 0.8rem; }
+
+  /* отзыв */
+  .quote blockquote { font-size: 1.5rem; line-height: 1.4; }
+
+  /* контакты: подпись над значением */
+  .contacts__list li { flex-direction: column; gap: 4px; padding-bottom: 14px; }
+  .contacts__list span { min-width: 0; padding-top: 0; }
+  .contacts__lead { margin-bottom: 30px; }
+
+  /* блок записи */
+  .booking { padding: 38px 22px; }
+  .booking__btn { width: 100%; justify-content: center; }
+
+  /* футер по центру в столбик */
+  .footer { flex-direction: column; text-align: center; gap: 14px; padding: 38px 24px; }
+
+  /* модалки компактнее */
+  .modal { padding: 12px; }
+  .modal__content { padding: 28px 22px; }
+  .modal__top { padding-right: 40px; }
+  .modal__top h3 { font-size: 1.5rem; }
+  .catalog__panel { padding: 34px 22px 30px; }
+  .catalog__title { font-size: 1.7rem; margin-bottom: 22px; }
+
+  /* админка */
+  .admin-panel__body { padding: 20px 16px 80px; }
+}
+
+@media (max-width: 360px) {
+  .perks, .masters__grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
