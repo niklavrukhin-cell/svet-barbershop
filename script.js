@@ -244,8 +244,11 @@ function renderMasters() {
     const art = document.createElement("article");
     art.className = "master reveal";
     const initial = (m.name || "?").trim().charAt(0).toUpperCase();
+    const photo = m.img
+      ? `<img class="master__img" src="${escapeHtml(m.img)}" alt="${escapeHtml(m.name || "")}" loading="lazy" />`
+      : "";
     art.innerHTML = `
-      <div class="master__photo" data-initials="${escapeHtml(initial)}"></div>
+      <div class="master__photo" data-initials="${escapeHtml(initial)}">${photo}</div>
       <h3>${escapeHtml(m.name || "")}</h3>
       <p>${escapeHtml(m.desc || "")}</p>`;
     mastersGrid.appendChild(art);
@@ -534,10 +537,22 @@ function renderAdminMasters() {
           <button class="admin-btn admin-btn--del" data-act="del">Удалить</button>
         </div>
       </div>
-      <label class="admin-field"><span>Имя</span>
-        <input type="text" class="admin-input" data-f="name" value="${escapeHtml(m.name || "")}" /></label>
-      <label class="admin-field"><span>Описание</span>
-        <input type="text" class="admin-input" data-f="desc" value="${escapeHtml(m.desc || "")}" /></label>`;
+      <div class="admin-service__grid">
+        <div class="admin-service__photo">
+          <img src="${escapeHtml(m.img) || ""}" alt="" class="admin-thumb" data-thumb ${m.img ? "" : 'style="opacity:.3"'} />
+          <label class="admin-upload">
+            <span data-uploadlabel>${m.img ? "Заменить фото" : "Добавить фото"}</span>
+            <input type="file" accept="image/*" data-file hidden />
+          </label>
+          ${m.img ? '<button class="admin-btn admin-btn--del" data-act="delimg">Убрать фото</button>' : ""}
+        </div>
+        <div class="admin-service__fields">
+          <label class="admin-field"><span>Имя</span>
+            <input type="text" class="admin-input" data-f="name" value="${escapeHtml(m.name || "")}" /></label>
+          <label class="admin-field"><span>Описание</span>
+            <input type="text" class="admin-input" data-f="desc" value="${escapeHtml(m.desc || "")}" /></label>
+        </div>
+      </div>`;
     card.querySelectorAll("[data-f]").forEach((inp) => {
       inp.addEventListener("input", () => {
         m[inp.dataset.f] = inp.value;
@@ -546,6 +561,23 @@ function renderAdminMasters() {
         }
       });
     });
+    const fileInput = card.querySelector("[data-file]");
+    const uploadLabel = card.querySelector("[data-uploadlabel]");
+    fileInput.addEventListener("change", async () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      uploadLabel.textContent = "Загрузка…";
+      try {
+        const url = await uploadImage(file);
+        m.img = url;
+        renderAdminMasters();
+      } catch (err) {
+        uploadLabel.textContent = "Ошибка загрузки";
+        alert("Не удалось загрузить фото: " + err.message);
+      }
+    });
+    const delImgBtn = card.querySelector('[data-act="delimg"]');
+    if (delImgBtn) delImgBtn.addEventListener("click", () => { m.img = ""; renderAdminMasters(); });
     card.querySelector('[data-act="del"]').addEventListener("click", () => {
       if (confirm("Удалить мастера «" + (m.name || "") + "»?")) {
         content.masters.splice(idx, 1);
