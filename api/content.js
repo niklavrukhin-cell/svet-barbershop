@@ -2,14 +2,17 @@
 //   GET  /api/content        — отдаёт сохранённый контент (или 204, если его ещё нет)
 //   POST /api/content        — сохраняет контент (требует пароль администратора)
 import { put, list } from "@vercel/blob";
+import { getBlobToken } from "./_blobToken.js";
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "SVET1423";
 const BLOB_PATH = "content/site-content.json";
 
 export default async function handler(req, res) {
+  const token = getBlobToken();
+
   if (req.method === "GET") {
     try {
-      const { blobs } = await list({ prefix: BLOB_PATH });
+      const { blobs } = await list({ prefix: BLOB_PATH, token });
       const blob = blobs.find((b) => b.pathname === BLOB_PATH) || blobs[0];
       if (!blob) {
         res.status(204).end();
@@ -47,6 +50,7 @@ export default async function handler(req, res) {
         addRandomSuffix: false,
         allowOverwrite: true,
         cacheControlMaxAge: 0,
+        token,
       });
       res.status(200).json({ ok: true });
     } catch (e) {

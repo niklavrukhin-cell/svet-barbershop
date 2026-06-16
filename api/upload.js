@@ -3,6 +3,7 @@
 // Требует пароль администратора в заголовке x-admin-password.
 // Возвращает { url } — публичную ссылку на загруженное изображение.
 import { put } from "@vercel/blob";
+import { getBlobToken } from "./_blobToken.js";
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "SVET1423";
 
@@ -45,6 +46,7 @@ export default async function handler(req, res) {
       access: "public",
       contentType,
       addRandomSuffix: true,
+      token: getBlobToken(),
     });
     res.status(200).json({ url: blob.url });
   } catch (e) {
