@@ -45,7 +45,7 @@
       <h1 class="hero__title">
         <span class="hero__title-line reveal">СВЕТ</span>
       </h1>
-      <p class="hero__sub reveal">Барбершоп на Чкаловской. Стрижка, борода и королевское бритьё<br />от мастеров, к которым возвращаются годами.</p>
+      <p class="hero__sub reveal" id="heroSub">Барбершоп на Чкаловской. Стрижка, борода и королевское бритьё<br />от мастеров, к которым возвращаются годами.</p>
       <div class="hero__actions reveal">
         <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid" data-book>Записаться онлайн</a>
         <a href="#services" class="btn btn--ghost">Смотреть услуги</a>
@@ -63,12 +63,7 @@
   </section>
 
   <!-- ПРЕИМУЩЕСТВА -->
-  <section class="perks">
-    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Запись онлайн</h3></div>
-    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Выезд на дом</h3></div>
-    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Оплата картой</h3></div>
-    <div class="perk reveal"><span class="perk__icon">✦</span><h3>Wi-Fi и комфорт</h3></div>
-  </section>
+  <section class="perks" id="perksWrap"></section>
 
   <!-- УСЛУГИ -->
   <section class="services" id="services">
@@ -122,32 +117,14 @@
       <p class="section-tag reveal">02 — команда</p>
       <h2 class="section-title reveal">Наши мастера</h2>
     </div>
-    <div class="masters__grid">
-      <article class="master reveal">
-        <div class="master__photo" data-initials="А"></div>
-        <h3>Артём</h3>
-        <p>Барбер · чувствует образ и воплощает любую идею</p>
-      </article>
-      <article class="master reveal">
-        <div class="master__photo" data-initials="Б"></div>
-        <h3>Борис</h3>
-        <p>Барбер · к нему возвращаются годами</p>
-      </article>
-      <article class="master reveal">
-        <div class="master__photo" data-initials="С"></div>
-        <h3>Сергей</h3>
-        <p>Барбер · стрижка и королевское бритьё</p>
-      </article>
-    </div>
+    <div class="masters__grid" id="mastersGrid"></div>
   </section>
 
   <!-- ОТЗЫВ -->
   <section class="quote">
     <div class="quote__sun"></div>
-    <blockquote class="reveal">
-      «Редко пишу отзывы, но тут мастера покорили моё сердце. Подстригли ровно так, как я хотел, дали совет по укладке. Чистота, красивый дизайн и сервис — рекомендую!»
-    </blockquote>
-    <cite class="reveal"><a href="https://yandex.ru/maps/213/moscow/?ll=37.687765%2C55.747983&mode=poi&poi%5Bpoint%5D=37.662154%2C55.751922&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D68361411731%26yclid%3D7369525524610154495&tab=reviews&z=14" target="_blank" rel="noopener">— Отзывы с Яндекс Карт</a></cite>
+    <blockquote class="reveal" id="reviewText"></blockquote>
+    <cite class="reveal" id="reviewCite"></cite>
   </section>
 
   <!-- КОНТАКТЫ / ЗАПИСЬ -->
@@ -200,38 +177,74 @@
       </div>
     </div>
     <div class="admin-panel__body">
+
       <!-- Акции -->
-      <section class="admin-section">
-        <div class="admin-section__head">
-          <h3 class="admin-section__title">Акции</h3>
+      <div class="admin-acc">
+        <button class="admin-acc__head" data-acc-toggle><span>Акции</span><span class="admin-acc__arrow">▸</span></button>
+        <div class="admin-acc__body">
           <button class="admin-btn admin-btn--add" id="adminAddPromo">+ Добавить акцию</button>
+          <div id="adminPromos" class="admin-services"></div>
         </div>
-        <div id="adminPromos" class="admin-services"></div>
-      </section>
+      </div>
 
       <!-- Услуги -->
-      <section class="admin-section">
-        <div class="admin-section__head">
-          <h3 class="admin-section__title">Услуги</h3>
+      <div class="admin-acc">
+        <button class="admin-acc__head" data-acc-toggle><span>Услуги</span><span class="admin-acc__arrow">▸</span></button>
+        <div class="admin-acc__body">
           <button class="admin-btn admin-btn--add" id="adminAddService">+ Добавить услугу</button>
+          <div id="adminServices" class="admin-services"></div>
         </div>
-        <div id="adminServices" class="admin-services"></div>
-      </section>
+      </div>
 
       <!-- Контакты -->
-      <section class="admin-section">
-        <h3 class="admin-section__title">Контакты</h3>
-        <label class="admin-field"><span>Адрес</span>
-          <input type="text" id="ac_address" class="admin-input" /></label>
-        <label class="admin-field"><span>Телефон (как показывать)</span>
-          <input type="text" id="ac_phone" class="admin-input" /></label>
-        <label class="admin-field"><span>Telegram (подпись, напр. @SvetHairMoscow)</span>
-          <input type="text" id="ac_telegram" class="admin-input" /></label>
-        <label class="admin-field"><span>Ссылка на Telegram</span>
-          <input type="text" id="ac_telegramUrl" class="admin-input" /></label>
-        <label class="admin-field"><span>Ссылка онлайн-записи (YClients)</span>
-          <input type="text" id="ac_bookingUrl" class="admin-input" /></label>
-      </section>
+      <div class="admin-acc">
+        <button class="admin-acc__head" data-acc-toggle><span>Контакты</span><span class="admin-acc__arrow">▸</span></button>
+        <div class="admin-acc__body">
+          <label class="admin-field"><span>Адрес</span>
+            <input type="text" id="ac_address" class="admin-input" /></label>
+          <label class="admin-field"><span>Телефон (как показывать)</span>
+            <input type="text" id="ac_phone" class="admin-input" /></label>
+          <label class="admin-field"><span>Telegram (подпись, напр. @SvetHairMoscow)</span>
+            <input type="text" id="ac_telegram" class="admin-input" /></label>
+          <label class="admin-field"><span>Ссылка на Telegram</span>
+            <input type="text" id="ac_telegramUrl" class="admin-input" /></label>
+          <label class="admin-field"><span>Ссылка онлайн-записи (YClients)</span>
+            <input type="text" id="ac_bookingUrl" class="admin-input" /></label>
+        </div>
+      </div>
+
+      <!-- Другое -->
+      <div class="admin-acc">
+        <button class="admin-acc__head" data-acc-toggle><span>Другое</span><span class="admin-acc__arrow">▸</span></button>
+        <div class="admin-acc__body">
+
+          <h4 class="admin-sub">Подзаголовок на главном экране</h4>
+          <label class="admin-field"><span>Текст под «СВЕТ» (можно &lt;br&gt; для переноса)</span>
+            <textarea id="ao_heroSub" class="admin-input" rows="2"></textarea></label>
+
+          <h4 class="admin-sub">Отзыв</h4>
+          <label class="admin-field"><span>Текст отзыва</span>
+            <textarea id="ao_reviewText" class="admin-input" rows="3"></textarea></label>
+          <label class="admin-field"><span>Подпись (напр. — Отзывы с Яндекс Карт)</span>
+            <input type="text" id="ao_reviewCite" class="admin-input" /></label>
+          <label class="admin-field"><span>Ссылка по клику на подпись</span>
+            <input type="text" id="ao_reviewUrl" class="admin-input" /></label>
+
+          <div class="admin-sub-head">
+            <h4 class="admin-sub">Преимущества</h4>
+            <button class="admin-btn admin-btn--add" id="adminAddPerk">+ Добавить пункт</button>
+          </div>
+          <div id="adminPerks"></div>
+
+          <div class="admin-sub-head">
+            <h4 class="admin-sub">Мастера</h4>
+            <button class="admin-btn admin-btn--add" id="adminAddMaster">+ Добавить мастера</button>
+          </div>
+          <div id="adminMasters" class="admin-services"></div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 

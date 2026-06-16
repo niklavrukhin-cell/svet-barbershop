@@ -117,8 +117,12 @@ function normalizeContent(c) {
   }
   delete c.promo;
   if (!Array.isArray(c.services)) c.services = [];
-  const dc = (window.DEFAULT_CONTENT && window.DEFAULT_CONTENT.contacts) || {};
-  c.contacts = Object.assign({}, dc, c.contacts || {});
+  const D = window.DEFAULT_CONTENT || {};
+  c.contacts = Object.assign({}, D.contacts || {}, c.contacts || {});
+  c.hero = Object.assign({}, D.hero || {}, c.hero || {});
+  c.review = Object.assign({}, D.review || {}, c.review || {});
+  if (!Array.isArray(c.perks)) c.perks = (D.perks || []).slice();
+  if (!Array.isArray(c.masters)) c.masters = (D.masters || []).map((m) => Object.assign({}, m));
   return c;
 }
 
@@ -213,10 +217,63 @@ function renderServices() {
   observeReveals(servicesGrid);
 }
 
+// ---- hero-подзаголовок ----
+function renderHero() {
+  const el = document.getElementById("heroSub");
+  if (el && content.hero && content.hero.sub != null) el.innerHTML = content.hero.sub;
+}
+
+// ---- преимущества ----
+const perksWrap = document.getElementById("perksWrap");
+function renderPerks() {
+  perksWrap.innerHTML = "";
+  (content.perks || []).forEach((text) => {
+    const div = document.createElement("div");
+    div.className = "perk reveal";
+    div.innerHTML = `<span class="perk__icon">✦</span><h3>${escapeHtml(text)}</h3>`;
+    perksWrap.appendChild(div);
+  });
+  observeReveals(perksWrap);
+}
+
+// ---- мастера ----
+const mastersGrid = document.getElementById("mastersGrid");
+function renderMasters() {
+  mastersGrid.innerHTML = "";
+  (content.masters || []).forEach((m) => {
+    const art = document.createElement("article");
+    art.className = "master reveal";
+    const initial = (m.name || "?").trim().charAt(0).toUpperCase();
+    art.innerHTML = `
+      <div class="master__photo" data-initials="${escapeHtml(initial)}"></div>
+      <h3>${escapeHtml(m.name || "")}</h3>
+      <p>${escapeHtml(m.desc || "")}</p>`;
+    mastersGrid.appendChild(art);
+  });
+  observeReveals(mastersGrid);
+}
+
+// ---- отзыв ----
+function renderReview() {
+  const r = content.review || {};
+  const t = document.getElementById("reviewText");
+  const c = document.getElementById("reviewCite");
+  if (t) t.textContent = r.text || "";
+  if (c) {
+    c.innerHTML = r.cite
+      ? `<a href="${escapeHtml(r.url || "#")}" target="_blank" rel="noopener">${escapeHtml(r.cite)}</a>`
+      : "";
+  }
+}
+
 function renderAll() {
   renderPromos();
   renderServices();
   renderContacts();
+  renderHero();
+  renderPerks();
+  renderMasters();
+  renderReview();
   catalogDirty = true;
 }
 
@@ -411,13 +468,117 @@ document.getElementById("adminExit").addEventListener("click", closePanel);
 function fillPanel() {
   renderAdminPromos();
   renderAdminServices();
+  renderAdminPerks();
+  renderAdminMasters();
   const c = content.contacts || {};
   document.getElementById("ac_address").value = c.address || "";
   document.getElementById("ac_phone").value = c.phone || "";
   document.getElementById("ac_telegram").value = c.telegram || "";
   document.getElementById("ac_telegramUrl").value = c.telegramUrl || "";
   document.getElementById("ac_bookingUrl").value = c.bookingUrl || "";
+  document.getElementById("ao_heroSub").value = (content.hero && content.hero.sub) || "";
+  const r = content.review || {};
+  document.getElementById("ao_reviewText").value = r.text || "";
+  document.getElementById("ao_reviewCite").value = r.cite || "";
+  document.getElementById("ao_reviewUrl").value = r.url || "";
 }
+
+// раздел «Другое»: считать одиночные поля обратно в контент
+function readOtherFromPanel() {
+  content.hero = { sub: document.getElementById("ao_heroSub").value };
+  content.review = {
+    text: document.getElementById("ao_reviewText").value,
+    cite: document.getElementById("ao_reviewCite").value.trim(),
+    url: document.getElementById("ao_reviewUrl").value.trim(),
+  };
+}
+
+// --- редактор преимуществ ---
+const adminPerks = document.getElementById("adminPerks");
+function renderAdminPerks() {
+  adminPerks.innerHTML = "";
+  (content.perks || []).forEach((text, idx) => {
+    const row = document.createElement("div");
+    row.className = "admin-inline";
+    row.innerHTML = `
+      <input type="text" class="admin-input" value="${escapeHtml(text)}" />
+      <button class="admin-btn admin-btn--del" title="Удалить">✕</button>`;
+    const inp = row.querySelector("input");
+    inp.addEventListener("input", () => { content.perks[idx] = inp.value; });
+    row.querySelector("button").addEventListener("click", () => {
+      content.perks.splice(idx, 1);
+      renderAdminPerks();
+    });
+    adminPerks.appendChild(row);
+  });
+}
+document.getElementById("adminAddPerk").addEventListener("click", () => {
+  content.perks = content.perks || [];
+  content.perks.push("Новый пункт");
+  renderAdminPerks();
+});
+
+// --- редактор мастеров ---
+const adminMasters = document.getElementById("adminMasters");
+function renderAdminMasters() {
+  adminMasters.innerHTML = "";
+  (content.masters || []).forEach((m, idx) => {
+    const card = document.createElement("div");
+    card.className = "admin-service";
+    card.innerHTML = `
+      <div class="admin-service__head">
+        <span class="admin-service__name">${escapeHtml(m.name) || "Мастер"}</span>
+        <div class="admin-service__head-actions">
+          <button class="admin-btn admin-btn--up" data-act="up" title="Выше">↑</button>
+          <button class="admin-btn admin-btn--up" data-act="down" title="Ниже">↓</button>
+          <button class="admin-btn admin-btn--del" data-act="del">Удалить</button>
+        </div>
+      </div>
+      <label class="admin-field"><span>Имя</span>
+        <input type="text" class="admin-input" data-f="name" value="${escapeHtml(m.name || "")}" /></label>
+      <label class="admin-field"><span>Описание</span>
+        <input type="text" class="admin-input" data-f="desc" value="${escapeHtml(m.desc || "")}" /></label>`;
+    card.querySelectorAll("[data-f]").forEach((inp) => {
+      inp.addEventListener("input", () => {
+        m[inp.dataset.f] = inp.value;
+        if (inp.dataset.f === "name") {
+          card.querySelector(".admin-service__name").textContent = inp.value || "Мастер";
+        }
+      });
+    });
+    card.querySelector('[data-act="del"]').addEventListener("click", () => {
+      if (confirm("Удалить мастера «" + (m.name || "") + "»?")) {
+        content.masters.splice(idx, 1);
+        renderAdminMasters();
+      }
+    });
+    card.querySelector('[data-act="up"]').addEventListener("click", () => {
+      if (idx > 0) {
+        [content.masters[idx - 1], content.masters[idx]] = [content.masters[idx], content.masters[idx - 1]];
+        renderAdminMasters();
+      }
+    });
+    card.querySelector('[data-act="down"]').addEventListener("click", () => {
+      if (idx < content.masters.length - 1) {
+        [content.masters[idx + 1], content.masters[idx]] = [content.masters[idx], content.masters[idx + 1]];
+        renderAdminMasters();
+      }
+    });
+    adminMasters.appendChild(card);
+  });
+}
+document.getElementById("adminAddMaster").addEventListener("click", () => {
+  content.masters = content.masters || [];
+  content.masters.push({ name: "Новый мастер", desc: "" });
+  renderAdminMasters();
+});
+
+// --- аккордеон разделов ---
+document.querySelectorAll("[data-acc-toggle]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.closest(".admin-acc").classList.toggle("open");
+  });
+});
 
 function readContactsFromPanel() {
   content.contacts = {
@@ -675,6 +836,7 @@ document.getElementById("adminAddService").addEventListener("click", () => {
 // сохранить и опубликовать
 document.getElementById("adminSave").addEventListener("click", async () => {
   readContactsFromPanel();
+  readOtherFromPanel();
   adminStatus.textContent = "Сохранение…";
   try {
     const res = await fetch("/api/content", {

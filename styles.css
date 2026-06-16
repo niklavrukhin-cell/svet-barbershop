@@ -1158,3 +1158,65 @@ textarea.admin-input { resize: vertical; line-height: 1.5; }
   .admin-panel__bar-actions { width: 100%; }
   .admin-btn--save { flex: 1; }
 }
+
+/* аккордеон разделов */
+.admin-acc {
+  border: 1px solid rgba(246, 231, 196, 0.14);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: #0c0c0c;
+}
+.admin-acc__head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem;
+  color: var(--light);
+  text-align: left;
+}
+.admin-acc__head:hover { background: #131313; }
+.admin-acc__arrow {
+  font-size: 0.9rem;
+  color: rgba(246, 231, 196, 0.6);
+  transition: transform 0.2s;
+}
+.admin-acc.open .admin-acc__arrow { transform: rotate(90deg); }
+.admin-acc__body {
+  display: none;
+  padding: 4px 20px 22px;
+  border-top: 1px solid rgba(246, 231, 196, 0.08);
+}
+.admin-acc.open .admin-acc__body { display: block; }
+.admin-acc__body > .admin-btn--add { margin: 14px 0; }
+
+.admin-sub {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--light);
+  margin: 22px 0 10px;
+}
+.admin-sub-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 22px;
+}
+.admin-sub-head .admin-sub { margin: 0; }
+
+.admin-inline {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.admin-inline .admin-input { flex: 1; }
+.admin-inline .admin-btn--del { padding: 8px 12px; }
