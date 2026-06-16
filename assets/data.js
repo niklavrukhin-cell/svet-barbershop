@@ -3,12 +3,23 @@
 // или сайт открыт локально через file://. Админка сохраняет правки на сервер,
 // и при загрузке они подменяют эти значения.
 window.DEFAULT_CONTENT = {
-  promo: {
-    badge: "акция",
-    title: "−20% на первый визит к барберу Сергею",
-    text: "Подробности у Администратора. Ждём Вас!<br>с 14.05.2026 по 31.12.2026",
-    btnText: "Поймать скидку",
-    btnUrl: "https://n365899.yclients.com"
+  promos: [
+    {
+      id: "promo-1",
+      badge: "акция",
+      title: "−20% на первый визит к барберу Сергею",
+      text: "Подробности у Администратора. Ждём Вас!<br>с 14.05.2026 по 31.12.2026",
+      img: "",
+      btnText: "Поймать скидку",
+      btnUrl: "https://n365899.yclients.com"
+    }
+  ],
+  contacts: {
+    address: "Москва, Большой Полуярославский пер., 10, корп. 2 (м. Чкаловская)",
+    phone: "+7 (966) 979-11-00",
+    telegram: "@SvetHairMoscow",
+    telegramUrl: "https://t.me/SvetHairMoscow",
+    bookingUrl: "https://n365899.yclients.com"
   },
   services: [
     {

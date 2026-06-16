@@ -542,9 +542,14 @@ section { position: relative; z-index: 2; }
 
 /* ===== Акция ===== */
 .promo { padding: 40px 48px 0; }
-.promo__inner {
+.promos {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.promo__inner {
   text-align: center;
   padding: 70px 40px;
   border: 1px solid var(--line);
@@ -554,6 +559,27 @@ section { position: relative; z-index: 2; }
     var(--bg-soft);
   position: relative;
   overflow: hidden;
+}
+/* акция с фото — две колонки */
+.promo__inner--photo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) 1.1fr;
+  gap: 40px;
+  text-align: left;
+  align-items: center;
+  padding: 40px;
+}
+.promo__img {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: #161616;
+}
+.promo__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.promo__inner--photo .promo__text-wrap { padding: 10px 0; }
+@media (max-width: 720px) {
+  .promo__inner--photo { grid-template-columns: 1fr; text-align: center; gap: 24px; padding: 28px; }
+  .promo__img { aspect-ratio: 16 / 9; }
 }
 .promo__badge {
   display: inline-block;

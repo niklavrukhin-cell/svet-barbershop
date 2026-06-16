@@ -30,7 +30,7 @@
       <a href="#masters">Мастера</a>
       <a href="#contacts">Контакты</a>
     </nav>
-    <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid header__cta">Онлайн запись</a>
+    <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid header__cta" data-book>Онлайн запись</a>
     <button class="burger" id="burger" aria-label="Меню">
       <span></span><span></span>
     </button>
@@ -47,7 +47,7 @@
       </h1>
       <p class="hero__sub reveal">Барбершоп на Чкаловской. Стрижка, борода и королевское бритьё<br />от мастеров, к которым возвращаются годами.</p>
       <div class="hero__actions reveal">
-        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid">Записаться онлайн</a>
+        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid" data-book>Записаться онлайн</a>
         <a href="#services" class="btn btn--ghost">Смотреть услуги</a>
       </div>
     </div>
@@ -57,14 +57,9 @@
     </div>
   </section>
 
-  <!-- АКЦИЯ -->
+  <!-- АКЦИИ -->
   <section class="promo" id="promoSection">
-    <div class="promo__inner reveal">
-      <div class="promo__badge" id="promoBadge">акция</div>
-      <h2 class="promo__title" id="promoTitle"></h2>
-      <p class="promo__text" id="promoText"></p>
-      <a href="#" target="_blank" rel="noopener" class="btn btn--solid" id="promoBtn"></a>
-    </div>
+    <div class="promos" id="promosWrap"></div>
   </section>
 
   <!-- ПРЕИМУЩЕСТВА -->
@@ -109,7 +104,7 @@
           <span class="modal__price" id="modalPrice"></span>
         </div>
         <div class="modal__desc" id="modalDesc"></div>
-        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid modal__cta">Записаться онлайн</a>
+        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid modal__cta" data-book>Записаться онлайн</a>
       </div>
     </div>
   </div>
@@ -161,20 +156,15 @@
       <p class="section-tag reveal">03 — запись</p>
       <h2 class="section-title reveal">Записаться</h2>
       <p class="contacts__lead reveal">Выбирай мастера, услугу и удобное время — запись онлайн в пару кликов.</p>
-      <ul class="contacts__list reveal">
-        <li><span>Адрес</span> Москва, Большой Полуярославский пер., 10, корп. 2 (м. Чкаловская)</li>
-        <li><span>Телефон</span> <a href="tel:+79669791100">+7 (966) 979-11-00</a></li>
-        <li><span>Telegram</span> <a href="https://t.me/SvetHairMoscow" target="_blank" rel="noopener">@SvetHairMoscow</a></li>
-        <li><span>Запись</span> <a href="https://n365899.yclients.com" target="_blank" rel="noopener">онлайн через YClients</a></li>
-      </ul>
+      <ul class="contacts__list reveal" id="contactsList"></ul>
     </div>
     <div class="booking reveal">
       <div class="booking__inner">
         <p class="booking__eyebrow">YClients · онлайн 24/7</p>
         <h3 class="booking__title">Запишись онлайн</h3>
         <p class="booking__text">Свободные окна, выбор мастера и услуги — в системе записи. Подтверждение сразу.</p>
-        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid booking__btn">Перейти к записи</a>
-        <p class="booking__or">или позвони <a href="tel:+79669791100">+7 (966) 979-11-00</a></p>
+        <a href="https://n365899.yclients.com" target="_blank" rel="noopener" class="btn btn--solid booking__btn" data-book>Перейти к записи</a>
+        <p class="booking__or">или позвони <a href="tel:+79669791100" id="bookingPhone">+7 (966) 979-11-00</a></p>
       </div>
     </div>
   </section>
@@ -210,19 +200,13 @@
       </div>
     </div>
     <div class="admin-panel__body">
-      <!-- Акция -->
+      <!-- Акции -->
       <section class="admin-section">
-        <h3 class="admin-section__title">Акция</h3>
-        <label class="admin-field"><span>Бейдж (маленькая надпись)</span>
-          <input type="text" id="ap_badge" class="admin-input" /></label>
-        <label class="admin-field"><span>Заголовок</span>
-          <input type="text" id="ap_title" class="admin-input" /></label>
-        <label class="admin-field"><span>Текст (можно &lt;br&gt; для переноса строки)</span>
-          <textarea id="ap_text" class="admin-input" rows="2"></textarea></label>
-        <label class="admin-field"><span>Текст кнопки</span>
-          <input type="text" id="ap_btnText" class="admin-input" /></label>
-        <label class="admin-field"><span>Ссылка кнопки</span>
-          <input type="text" id="ap_btnUrl" class="admin-input" /></label>
+        <div class="admin-section__head">
+          <h3 class="admin-section__title">Акции</h3>
+          <button class="admin-btn admin-btn--add" id="adminAddPromo">+ Добавить акцию</button>
+        </div>
+        <div id="adminPromos" class="admin-services"></div>
       </section>
 
       <!-- Услуги -->
@@ -232,6 +216,21 @@
           <button class="admin-btn admin-btn--add" id="adminAddService">+ Добавить услугу</button>
         </div>
         <div id="adminServices" class="admin-services"></div>
+      </section>
+
+      <!-- Контакты -->
+      <section class="admin-section">
+        <h3 class="admin-section__title">Контакты</h3>
+        <label class="admin-field"><span>Адрес</span>
+          <input type="text" id="ac_address" class="admin-input" /></label>
+        <label class="admin-field"><span>Телефон (как показывать)</span>
+          <input type="text" id="ac_phone" class="admin-input" /></label>
+        <label class="admin-field"><span>Telegram (подпись, напр. @SvetHairMoscow)</span>
+          <input type="text" id="ac_telegram" class="admin-input" /></label>
+        <label class="admin-field"><span>Ссылка на Telegram</span>
+          <input type="text" id="ac_telegramUrl" class="admin-input" /></label>
+        <label class="admin-field"><span>Ссылка онлайн-записи (YClients)</span>
+          <input type="text" id="ac_bookingUrl" class="admin-input" /></label>
       </section>
     </div>
   </div>

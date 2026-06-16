@@ -95,7 +95,7 @@ const animateGlow = () => {
 animateGlow();
 
 // =====================================================================
-//  КОНТЕНТ САЙТА (акция + услуги) — грузится с сервера, иначе дефолт
+//  КОНТЕНТ САЙТА (акции + услуги + контакты) — грузится с сервера
 // =====================================================================
 const catGroups = [
   { key: "strizhki", title: "Стрижки" },
@@ -103,10 +103,24 @@ const catGroups = [
   { key: "kompleksy", title: "Комплексы" },
   { key: "dop", title: "Дополнительные услуги" },
 ];
-const catTitle = (key) => (catGroups.find((g) => g.key === key) || {}).title || key;
 
-// рабочая копия контента
-let content = JSON.parse(JSON.stringify(window.DEFAULT_CONTENT));
+let content = normalizeContent(JSON.parse(JSON.stringify(window.DEFAULT_CONTENT)));
+
+// приводим контент к актуальной структуре (миграция со старого формата)
+function normalizeContent(c) {
+  c = c || {};
+  // старый формат: одиночный promo -> массив promos
+  if (!Array.isArray(c.promos)) {
+    c.promos = c.promo && (c.promo.title || c.promo.text)
+      ? [Object.assign({ id: "promo-1", img: "" }, c.promo)]
+      : [];
+  }
+  delete c.promo;
+  if (!Array.isArray(c.services)) c.services = [];
+  const dc = (window.DEFAULT_CONTENT && window.DEFAULT_CONTENT.contacts) || {};
+  c.contacts = Object.assign({}, dc, c.contacts || {});
+  return c;
+}
 
 function escapeHtml(s) {
   return String(s == null ? "" : s)
@@ -114,23 +128,57 @@ function escapeHtml(s) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
+function telHref(phone) {
+  return "tel:" + String(phone || "").replace(/[^\d+]/g, "");
+}
 
-// ---- рендер акции ----
-function renderPromo() {
-  const p = content.promo || {};
-  const section = document.getElementById("promoSection");
-  const hasPromo = (p.title && p.title.trim()) || (p.text && p.text.trim());
-  if (section) section.style.display = hasPromo ? "" : "none";
-  document.getElementById("promoBadge").textContent = p.badge || "";
-  document.getElementById("promoTitle").textContent = p.title || "";
-  document.getElementById("promoText").innerHTML = p.text || "";
-  const btn = document.getElementById("promoBtn");
-  if (p.btnText && p.btnText.trim()) {
-    btn.style.display = "";
-    btn.textContent = p.btnText;
-    btn.href = p.btnUrl || "#";
-  } else {
-    btn.style.display = "none";
+// ---- рендер акций ----
+const promosWrap = document.getElementById("promosWrap");
+const promoSection = document.getElementById("promoSection");
+function renderPromos() {
+  promosWrap.innerHTML = "";
+  const list = content.promos || [];
+  promoSection.style.display = list.length ? "" : "none";
+  list.forEach((p) => {
+    const card = document.createElement("div");
+    card.className = "promo__inner reveal" + (p.img ? " promo__inner--photo" : "");
+    const imgHtml = p.img
+      ? `<div class="promo__img"><img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.title || "акция")}" loading="lazy" /></div>`
+      : "";
+    const btnHtml = (p.btnText && p.btnText.trim())
+      ? `<a href="${escapeHtml(p.btnUrl || "#")}" target="_blank" rel="noopener" class="btn btn--solid">${escapeHtml(p.btnText)}</a>`
+      : "";
+    card.innerHTML = `
+      ${imgHtml}
+      <div class="promo__text-wrap">
+        ${p.badge ? `<div class="promo__badge">${escapeHtml(p.badge)}</div>` : ""}
+        ${p.title ? `<h2 class="promo__title">${escapeHtml(p.title)}</h2>` : ""}
+        ${p.text ? `<p class="promo__text">${p.text}</p>` : ""}
+        ${btnHtml}
+      </div>`;
+    promosWrap.appendChild(card);
+  });
+  observeReveals(promosWrap);
+}
+
+// ---- рендер контактов ----
+const contactsList = document.getElementById("contactsList");
+function renderContacts() {
+  const c = content.contacts || {};
+  const rows = [];
+  if (c.address) rows.push(`<li><span>Адрес</span> ${escapeHtml(c.address)}</li>`);
+  if (c.phone) rows.push(`<li><span>Телефон</span> <a href="${telHref(c.phone)}">${escapeHtml(c.phone)}</a></li>`);
+  if (c.telegram) rows.push(`<li><span>Telegram</span> <a href="${escapeHtml(c.telegramUrl || "#")}" target="_blank" rel="noopener">${escapeHtml(c.telegram)}</a></li>`);
+  if (c.bookingUrl) rows.push(`<li><span>Запись</span> <a href="${escapeHtml(c.bookingUrl)}" target="_blank" rel="noopener">онлайн через YClients</a></li>`);
+  contactsList.innerHTML = rows.join("");
+
+  // телефон в блоке записи
+  const bp = document.getElementById("bookingPhone");
+  if (bp && c.phone) { bp.textContent = c.phone; bp.href = telHref(c.phone); }
+
+  // все ссылки записи на сайте
+  if (c.bookingUrl) {
+    document.querySelectorAll("[data-book]").forEach((a) => (a.href = c.bookingUrl));
   }
 }
 
@@ -166,9 +214,10 @@ function renderServices() {
 }
 
 function renderAll() {
-  renderPromo();
+  renderPromos();
   renderServices();
-  catalogDirty = true; // каталог пересоберётся при следующем открытии
+  renderContacts();
+  catalogDirty = true;
 }
 
 // ---- загрузка контента с сервера ----
@@ -177,8 +226,8 @@ async function loadContent() {
     const res = await fetch("/api/content", { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
-      if (data && Array.isArray(data.services) && data.services.length) {
-        content = data;
+      if (data && (Array.isArray(data.services) || Array.isArray(data.promos))) {
+        content = normalizeContent(data);
       }
     }
   } catch (e) {
@@ -283,7 +332,7 @@ const adminPanel = document.getElementById("adminPanel");
 const adminPassInput = document.getElementById("adminPass");
 const adminError = document.getElementById("adminError");
 const adminStatus = document.getElementById("adminStatus");
-let adminPassword = ""; // хранится в памяти на время сессии
+let adminPassword = "";
 
 // --- тройной клик по логотипу ---
 let clickCount = 0, clickTimer = null;
@@ -334,7 +383,6 @@ async function tryLogin() {
       adminError.hidden = false;
     }
   } catch (e) {
-    // бэкенд недоступен (например, открыто локально) — но дадим войти для предпросмотра
     adminError.textContent = "Бэкенд недоступен. Откройте сайт на Vercel, чтобы сохранять правки.";
     adminError.hidden = false;
   }
@@ -360,29 +408,157 @@ function closePanel() {
 }
 document.getElementById("adminExit").addEventListener("click", closePanel);
 
-// --- заполнение полей акции из текущего контента ---
 function fillPanel() {
-  const p = content.promo || {};
-  document.getElementById("ap_badge").value = p.badge || "";
-  document.getElementById("ap_title").value = p.title || "";
-  document.getElementById("ap_text").value = p.text || "";
-  document.getElementById("ap_btnText").value = p.btnText || "";
-  document.getElementById("ap_btnUrl").value = p.btnUrl || "";
+  renderAdminPromos();
   renderAdminServices();
+  const c = content.contacts || {};
+  document.getElementById("ac_address").value = c.address || "";
+  document.getElementById("ac_phone").value = c.phone || "";
+  document.getElementById("ac_telegram").value = c.telegram || "";
+  document.getElementById("ac_telegramUrl").value = c.telegramUrl || "";
+  document.getElementById("ac_bookingUrl").value = c.bookingUrl || "";
 }
 
-// --- считать акцию из полей обратно в контент ---
-function readPromoFromPanel() {
-  content.promo = {
-    badge: document.getElementById("ap_badge").value.trim(),
-    title: document.getElementById("ap_title").value.trim(),
-    text: document.getElementById("ap_text").value,
-    btnText: document.getElementById("ap_btnText").value.trim(),
-    btnUrl: document.getElementById("ap_btnUrl").value.trim(),
+function readContactsFromPanel() {
+  content.contacts = {
+    address: document.getElementById("ac_address").value.trim(),
+    phone: document.getElementById("ac_phone").value.trim(),
+    telegram: document.getElementById("ac_telegram").value.trim(),
+    telegramUrl: document.getElementById("ac_telegramUrl").value.trim(),
+    bookingUrl: document.getElementById("ac_bookingUrl").value.trim(),
   };
 }
 
-// --- редактор списка услуг ---
+// загрузка фото на сервер (используется и для услуг, и для акций)
+async function uploadImage(file) {
+  const res = await fetch(
+    "/api/upload?filename=" + encodeURIComponent(file.name),
+    {
+      method: "POST",
+      headers: {
+        "x-admin-password": adminPassword,
+        "content-type": file.type || "application/octet-stream",
+      },
+      body: file,
+    }
+  );
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(t || res.status);
+  }
+  const data = await res.json();
+  return data.url;
+}
+
+// --- редактор акций ---
+const adminPromos = document.getElementById("adminPromos");
+function renderAdminPromos() {
+  adminPromos.innerHTML = "";
+  (content.promos || []).forEach((p, idx) => {
+    const card = document.createElement("div");
+    card.className = "admin-service";
+    card.innerHTML = `
+      <div class="admin-service__head">
+        <span class="admin-service__name">${escapeHtml(p.title) || "Акция"}</span>
+        <div class="admin-service__head-actions">
+          <button class="admin-btn admin-btn--up" data-act="up" title="Выше">↑</button>
+          <button class="admin-btn admin-btn--up" data-act="down" title="Ниже">↓</button>
+          <button class="admin-btn admin-btn--del" data-act="del">Удалить</button>
+        </div>
+      </div>
+      <div class="admin-service__grid">
+        <div class="admin-service__photo">
+          <img src="${escapeHtml(p.img) || ""}" alt="" class="admin-thumb" data-thumb ${p.img ? "" : 'style="opacity:.3"'} />
+          <label class="admin-upload">
+            <span data-uploadlabel>${p.img ? "Заменить фото" : "Добавить фото"}</span>
+            <input type="file" accept="image/*" data-file hidden />
+          </label>
+          ${p.img ? '<button class="admin-btn admin-btn--del" data-act="delimg">Убрать фото</button>' : ""}
+        </div>
+        <div class="admin-service__fields">
+          <label class="admin-field"><span>Бейдж (маленькая надпись)</span>
+            <input type="text" class="admin-input" data-f="badge" value="${escapeHtml(p.badge || "")}" /></label>
+          <label class="admin-field"><span>Заголовок</span>
+            <input type="text" class="admin-input" data-f="title" value="${escapeHtml(p.title || "")}" /></label>
+          <label class="admin-field"><span>Текст (можно &lt;br&gt; для переноса строки)</span>
+            <textarea class="admin-input" data-f="text" rows="2">${escapeHtml(p.text || "")}</textarea></label>
+          <div class="admin-row2">
+            <label class="admin-field"><span>Текст кнопки (пусто — без кнопки)</span>
+              <input type="text" class="admin-input" data-f="btnText" value="${escapeHtml(p.btnText || "")}" /></label>
+            <label class="admin-field"><span>Ссылка кнопки</span>
+              <input type="text" class="admin-input" data-f="btnUrl" value="${escapeHtml(p.btnUrl || "")}" /></label>
+          </div>
+        </div>
+      </div>`;
+
+    card.querySelectorAll("[data-f]").forEach((inp) => {
+      inp.addEventListener("input", () => {
+        p[inp.dataset.f] = inp.value;
+        if (inp.dataset.f === "title") {
+          card.querySelector(".admin-service__name").textContent = inp.value || "Акция";
+        }
+      });
+    });
+
+    const fileInput = card.querySelector("[data-file]");
+    const uploadLabel = card.querySelector("[data-uploadlabel]");
+    const thumb = card.querySelector("[data-thumb]");
+    fileInput.addEventListener("change", async () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      uploadLabel.textContent = "Загрузка…";
+      try {
+        const url = await uploadImage(file);
+        p.img = url;
+        renderAdminPromos();
+      } catch (err) {
+        uploadLabel.textContent = "Ошибка загрузки";
+        alert("Не удалось загрузить фото: " + err.message);
+      }
+    });
+
+    const delImgBtn = card.querySelector('[data-act="delimg"]');
+    if (delImgBtn) delImgBtn.addEventListener("click", () => { p.img = ""; renderAdminPromos(); });
+
+    card.querySelector('[data-act="del"]').addEventListener("click", () => {
+      if (confirm("Удалить эту акцию?")) {
+        content.promos.splice(idx, 1);
+        renderAdminPromos();
+      }
+    });
+    card.querySelector('[data-act="up"]').addEventListener("click", () => {
+      if (idx > 0) {
+        [content.promos[idx - 1], content.promos[idx]] = [content.promos[idx], content.promos[idx - 1]];
+        renderAdminPromos();
+      }
+    });
+    card.querySelector('[data-act="down"]').addEventListener("click", () => {
+      if (idx < content.promos.length - 1) {
+        [content.promos[idx + 1], content.promos[idx]] = [content.promos[idx], content.promos[idx + 1]];
+        renderAdminPromos();
+      }
+    });
+
+    adminPromos.appendChild(card);
+  });
+}
+
+document.getElementById("adminAddPromo").addEventListener("click", () => {
+  content.promos = content.promos || [];
+  content.promos.push({
+    id: "promo-" + Date.now(),
+    badge: "акция",
+    title: "Новая акция",
+    text: "",
+    img: "",
+    btnText: "Записаться",
+    btnUrl: (content.contacts && content.contacts.bookingUrl) || "https://n365899.yclients.com",
+  });
+  renderAdminPromos();
+  adminPromos.lastChild.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+// --- редактор услуг ---
 const adminServices = document.getElementById("adminServices");
 function renderAdminServices() {
   adminServices.innerHTML = "";
@@ -426,7 +602,6 @@ function renderAdminServices() {
         </div>
       </div>`;
 
-    // привязка полей к данным
     card.querySelectorAll("[data-f]").forEach((inp) => {
       inp.addEventListener("input", () => {
         const f = inp.dataset.f;
@@ -441,7 +616,6 @@ function renderAdminServices() {
       });
     });
 
-    // загрузка фото
     const fileInput = card.querySelector("[data-file]");
     const uploadLabel = card.querySelector("[data-uploadlabel]");
     const thumb = card.querySelector("[data-thumb]");
@@ -460,7 +634,6 @@ function renderAdminServices() {
       }
     });
 
-    // кнопки порядка/удаления
     card.querySelector('[data-act="del"]').addEventListener("click", () => {
       if (confirm("Удалить услугу «" + (s.title || "") + "»?")) {
         content.services.splice(idx, 1);
@@ -484,7 +657,6 @@ function renderAdminServices() {
   });
 }
 
-// добавить услугу
 document.getElementById("adminAddService").addEventListener("click", () => {
   content.services = content.services || [];
   content.services.push({
@@ -500,30 +672,9 @@ document.getElementById("adminAddService").addEventListener("click", () => {
   adminServices.lastChild.scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
-// загрузка фото на сервер
-async function uploadImage(file) {
-  const res = await fetch(
-    "/api/upload?filename=" + encodeURIComponent(file.name),
-    {
-      method: "POST",
-      headers: {
-        "x-admin-password": adminPassword,
-        "content-type": file.type || "application/octet-stream",
-      },
-      body: file,
-    }
-  );
-  if (!res.ok) {
-    const t = await res.text();
-    throw new Error(t || res.status);
-  }
-  const data = await res.json();
-  return data.url;
-}
-
 // сохранить и опубликовать
 document.getElementById("adminSave").addEventListener("click", async () => {
-  readPromoFromPanel();
+  readContactsFromPanel();
   adminStatus.textContent = "Сохранение…";
   try {
     const res = await fetch("/api/content", {
