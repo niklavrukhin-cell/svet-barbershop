@@ -142,7 +142,7 @@ window.DEFAULT_CONTENT = {
     {
       id: "kompleks-5000",
       cat: "kompleksy",
-      title: "Стрижка + уход за лицом + премиальное оформление бороды",
+      title: "Стрижка + уход за лицом + борода",
       price: "5 000 ₽",
       short: "Полная перезагрузка образа за один визит.",
       img: "assets/services/kompleks-5000.png",
