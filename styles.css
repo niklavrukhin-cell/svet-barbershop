@@ -967,6 +967,16 @@ section { position: relative; z-index: 2; }
 
 /* ===== Телефоны ===== */
 @media (max-width: 600px) {
+  /* общий масштаб — все тексты чуть мельче на телефоне */
+  html { font-size: 91%; }
+  .section-title { font-size: 1.9rem; }
+  .section-tag { font-size: 0.66rem; letter-spacing: 0.26rem; margin-bottom: 12px; }
+  .hero__title-line { font-size: clamp(4rem, 20vw, 6.5rem); }
+  .stat__num { font-size: 2.4rem; }
+  .stat__label { font-size: 0.72rem; }
+  .booking__title { font-size: 1.7rem; }
+  .booking__eyebrow, .booking__text { font-size: 0.85rem; }
+
   /* компактные вертикальные отступы вместо огромных */
   .services { padding: 70px 18px; }
   .masters { padding: 70px 18px; }
@@ -995,7 +1005,7 @@ section { position: relative; z-index: 2; }
   /* акции */
   .promo { padding: 24px 16px 0; }
   .promo__inner { padding: 40px 22px; }
-  .promo__title { font-size: 1.55rem; }
+  .promo__title { font-size: 1.4rem; }
   .promo__badge { margin-bottom: 18px; }
   .promo__text { margin-bottom: 26px; }
 
@@ -1018,9 +1028,11 @@ section { position: relative; z-index: 2; }
     padding-left: 4px;
     padding-right: 4px;
   }
-  .services__row .service { flex: 0 0 62vw; }
-  .service__body { padding: 18px 18px 22px; }
-  .service h4 { font-size: 1.15rem; }
+  .services__row .service { flex: 0 0 56vw; }
+  .service__body { padding: 15px 15px 18px; gap: 7px; }
+  .service h4 { font-size: 1.02rem; }
+  .service__price { font-size: 0.92rem; }
+  .service p { font-size: 0.8rem; }
 
   /* каталог-окно по центру */
   .catalog__title { text-align: center; }
@@ -1037,9 +1049,9 @@ section { position: relative; z-index: 2; }
     justify-self: center;
   }
   .master__photo { margin-bottom: 16px; }
-  .master__photo::before { font-size: 2.6rem; }
-  .master h3 { font-size: 1.2rem; }
-  .master p { font-size: 0.8rem; }
+  .master__photo::before { font-size: 2.4rem; }
+  .master h3 { font-size: 1.05rem; }
+  .master p { font-size: 0.76rem; }
 
   /* отзыв */
   .quote blockquote { font-size: 1.5rem; line-height: 1.4; }
