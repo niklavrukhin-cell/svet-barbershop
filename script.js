@@ -355,12 +355,16 @@ const modalImg = document.getElementById("modalImg");
 const modalTitle = document.getElementById("modalTitle");
 const modalPrice = document.getElementById("modalPrice");
 const modalDesc = document.getElementById("modalDesc");
+const modalCta = document.getElementById("modalCta");
 
 function openService(s) {
   modalImg.src = s.img || "";
   modalImg.alt = s.title || "";
   modalTitle.textContent = s.title || "";
   modalPrice.textContent = s.price || "";
+  // ссылка записи: своя у услуги, иначе общая запись
+  const fallbackBook = (content.contacts && content.contacts.bookingUrl) || "https://n365899.yclients.com";
+  modalCta.href = (s.bookUrl && s.bookUrl.trim()) ? s.bookUrl : fallbackBook;
   const full = Array.isArray(s.full) ? s.full : (s.full ? [s.full] : []);
   const first = full[0] || "";
   const rest = full.slice(1);
@@ -807,6 +811,8 @@ function renderAdminServices() {
             <input type="text" class="admin-input" data-f="short" value="${escapeHtml(s.short || "")}" /></label>
           <label class="admin-field"><span>Полное описание (абзацы разделяйте пустой строкой)</span>
             <textarea class="admin-input" data-f="full" rows="6">${escapeHtml(fullText)}</textarea></label>
+          <label class="admin-field"><span>Ссылка записи на эту услугу (необязательно — с выбранной услугой в YClients)</span>
+            <input type="text" class="admin-input" data-f="bookUrl" value="${escapeHtml(s.bookUrl || "")}" placeholder="https://n365899.yclients.com/...select-services?o=..." /></label>
         </div>
       </div>`;
 
