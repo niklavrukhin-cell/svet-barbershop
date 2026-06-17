@@ -4,7 +4,7 @@
 import { put, list } from "@vercel/blob";
 import { getBlobToken } from "./_blobToken.js";
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "SVET1423";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const BLOB_PATH = "content/site-content.json";
 
 export default async function handler(req, res) {
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     const pass = req.headers["x-admin-password"];
-    if (!pass || pass !== ADMIN_PASSWORD) {
+    if (!ADMIN_PASSWORD || !pass || pass !== ADMIN_PASSWORD) {
       res.status(401).json({ error: "Неверный пароль" });
       return;
     }
