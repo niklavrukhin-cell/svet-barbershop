@@ -350,6 +350,8 @@ section { position: relative; z-index: 2; }
   max-width: 1200px;
   margin: 0 auto;
   overflow-x: auto;
+  overflow-y: hidden;
+  padding-top: 10px;
   padding-bottom: 18px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -372,7 +374,7 @@ section { position: relative; z-index: 2; }
   flex-direction: column;
   cursor: pointer;
 }
-.service:hover { border-color: rgba(246,231,196,0.28); }
+.service:hover { transform: translateY(-6px); border-color: rgba(246,231,196,0.28); }
 .service:focus-visible { outline: 1px solid var(--light); outline-offset: 3px; }
 .service__img {
   aspect-ratio: 1/1;
