@@ -373,8 +373,10 @@ function openService(s) {
   const moreBtn = modalDesc.querySelector(".modal__more-btn");
   if (moreBtn) {
     moreBtn.addEventListener("click", () => {
-      modalDesc.querySelector(".modal__more").hidden = false;
-      moreBtn.remove();
+      const more = modalDesc.querySelector(".modal__more");
+      const willShow = more.hidden;
+      more.hidden = !willShow;
+      moreBtn.textContent = willShow ? "Свернуть" : "Подробнее";
     });
   }
   modal.classList.add("open");
