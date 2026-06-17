@@ -1073,13 +1073,21 @@ section { position: relative; z-index: 2; }
   /* футер по центру в столбик */
   .footer { flex-direction: column; text-align: center; gap: 14px; padding: 38px 24px; }
 
-  /* модалки компактнее */
+  /* модалка услуги компактнее: меньше фото и текст */
   .modal { padding: 12px; }
-  .modal__content { padding: 28px 22px; }
-  .modal__top { padding-right: 40px; }
-  .modal__top h3 { font-size: 1.5rem; }
-  .catalog__panel { padding: 34px 22px 30px; }
-  .catalog__title { font-size: 1.7rem; margin-bottom: 22px; }
+  .modal__img { aspect-ratio: 16/10; max-height: 34vh; }
+  .modal__content { padding: 20px 18px; gap: 11px; }
+  .modal__top { padding-right: 38px; gap: 12px; }
+  .modal__top h3 { font-size: 1.3rem; }
+  .modal__price { font-size: 1rem; }
+  .modal__desc { gap: 10px; }
+  .modal__desc p { font-size: 0.84rem; line-height: 1.55; }
+  .modal__more-btn { font-size: 0.74rem; }
+  .modal__cta { padding: 13px 26px; }
+  .catalog__panel { padding: 30px 20px 26px; }
+  .catalog__title { font-size: 1.55rem; margin-bottom: 20px; }
+  .cat-item__name { font-size: 0.98rem; }
+  .cat-item__price { font-size: 0.95rem; }
 
   /* админка */
   .admin-panel__body { padding: 20px 16px 80px; }
