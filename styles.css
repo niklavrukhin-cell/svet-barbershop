@@ -991,10 +991,7 @@ section { position: relative; z-index: 2; }
   /* ряд-превью: меньше карточка; вертикальный свайп листает страницу, горизонтальный — ряд */
   .services__row {
     gap: 14px;
-    touch-action: pan-x;
     scroll-snap-type: none;
-    overflow-y: hidden;
-    overscroll-behavior-x: contain;
     padding-left: 4px;
     padding-right: 4px;
   }
@@ -1055,6 +1052,7 @@ section { position: relative; z-index: 2; }
 
 /* Сенсорные экраны: убираем hover-эффекты, которые залипают при касании */
 @media (hover: none) {
+  .cursor-glow { display: none !important; }
   .service:hover { transform: none; border-color: var(--line); }
   .service:hover .service__img img { transform: none; }
   .service:hover .service__more { transform: none; opacity: 0.65; }
