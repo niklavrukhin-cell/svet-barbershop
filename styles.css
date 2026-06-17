@@ -988,11 +988,13 @@ section { position: relative; z-index: 2; }
   .services__head { flex-direction: column; align-items: center; text-align: center; gap: 14px; margin-bottom: 26px; }
   .services__title { text-align: center; }
   .services__all { width: 100%; text-align: center; }
-  /* ряд-превью: вертикальный свайп листает страницу, горизонтальный — ленту услуг */
+  /* ряд-превью: меньше карточка; листается горизонтально */
   .services__row {
     gap: 14px;
-    scroll-snap-type: none;
     touch-action: pan-x;
+    scroll-snap-type: none;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     padding-left: 4px;
     padding-right: 4px;
   }
