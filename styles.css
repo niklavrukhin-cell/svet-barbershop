@@ -993,6 +993,8 @@ section { position: relative; z-index: 2; }
     gap: 14px;
     touch-action: pan-x;
     scroll-snap-type: none;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     padding-left: 4px;
     padding-right: 4px;
   }
@@ -1003,6 +1005,9 @@ section { position: relative; z-index: 2; }
   /* каталог-окно по центру */
   .catalog__title { text-align: center; }
   .cat-group__title { text-align: center; }
+  .cat-item { flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+  .cat-item__dots { display: none; }
+  .cat-item__name { font-size: 1.05rem; }
 
   /* мастера — 2 в ряд; если число нечётное, последний по центру */
   .masters__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -1046,6 +1051,17 @@ section { position: relative; z-index: 2; }
 @media (max-width: 360px) {
   .perks, .masters__grid { grid-template-columns: 1fr; }
   .masters__grid .master:last-child:nth-child(odd) { grid-column: auto; width: auto; }
+}
+
+/* Сенсорные экраны: убираем hover-эффекты, которые залипают при касании */
+@media (hover: none) {
+  .service:hover { transform: none; border-color: var(--line); }
+  .service:hover .service__img img { transform: none; }
+  .service:hover .service__more { transform: none; opacity: 0.65; }
+  .master:hover .master__photo { transform: none; border-color: var(--line); }
+  .master:hover .master__photo::before { transform: none; }
+  .master:hover .master__photo::after { opacity: 0; }
+  .btn--solid:hover { transform: none; box-shadow: 0 0 0 0 var(--glow); }
 }
 
 @media (prefers-reduced-motion: reduce) {
