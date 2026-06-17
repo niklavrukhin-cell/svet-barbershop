@@ -203,7 +203,6 @@ function renderServices() {
       <div class="service__body">
         <div class="service__top"><h4>${escapeHtml(s.title)}</h4><span class="service__price">${escapeHtml(s.price)}</span></div>
         <p>${escapeHtml(s.short || "")}</p>
-        <span class="service__more">Подробнее →</span>
       </div>`;
     art.addEventListener("click", () => openService(s));
     art.addEventListener("keydown", (e) => {
@@ -363,7 +362,21 @@ function openService(s) {
   modalTitle.textContent = s.title || "";
   modalPrice.textContent = s.price || "";
   const full = Array.isArray(s.full) ? s.full : (s.full ? [s.full] : []);
-  modalDesc.innerHTML = full.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
+  const first = full[0] || "";
+  const rest = full.slice(1);
+  let html = first ? `<p>${escapeHtml(first)}</p>` : "";
+  if (rest.length) {
+    html += `<div class="modal__more" hidden>${rest.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}</div>`;
+    html += `<button type="button" class="modal__more-btn">Подробнее</button>`;
+  }
+  modalDesc.innerHTML = html;
+  const moreBtn = modalDesc.querySelector(".modal__more-btn");
+  if (moreBtn) {
+    moreBtn.addEventListener("click", () => {
+      modalDesc.querySelector(".modal__more").hidden = false;
+      moreBtn.remove();
+    });
+  }
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";

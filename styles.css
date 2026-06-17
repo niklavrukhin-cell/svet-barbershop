@@ -488,6 +488,22 @@ section { position: relative; z-index: 2; }
 .modal__desc { display: flex; flex-direction: column; gap: 14px; }
 .modal__desc p { color: var(--muted); font-size: 0.94rem; line-height: 1.65; }
 .modal__cta { margin-top: 8px; align-self: center; }
+.modal__more { display: flex; flex-direction: column; gap: 14px; }
+.modal__more-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--light);
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(246, 231, 196, 0.4);
+  transition: border-color 0.3s, opacity 0.3s;
+}
+.modal__more-btn:hover { border-color: var(--light); opacity: 0.85; }
 
 /* ===== Окно каталога (все услуги по категориям) ===== */
 .catalog__panel {
