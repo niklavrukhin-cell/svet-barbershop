@@ -249,8 +249,10 @@ a { color: inherit; text-decoration: none; }
 .hero__scroll {
   position: absolute;
   bottom: 38px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -382,6 +384,9 @@ section { position: relative; z-index: 2; }
   object-fit: cover;
   display: block;
   transition: transform 0.7s var(--ease);
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
 }
 .service:hover .service__img img { transform: scale(1.05); }
 .service__body { padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
@@ -979,15 +984,33 @@ section { position: relative; z-index: 2; }
   .perk { padding: 28px 14px; gap: 10px; }
   .perk h3 { font-size: 1.1rem; }
 
-  /* услуги: заголовок и кнопка в столбик */
-  .services__head { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 26px; }
+  /* услуги: заголовок и кнопка по центру */
+  .services__head { flex-direction: column; align-items: center; text-align: center; gap: 14px; margin-bottom: 26px; }
+  .services__title { text-align: center; }
   .services__all { width: 100%; text-align: center; }
-  .services__row { gap: 16px; }
-  .services__row .service { flex: 0 0 80vw; }
-  .service__body { padding: 20px 20px 24px; }
+  /* ряд-превью: меньше карточка; вертикальный свайп листает страницу, горизонтальный — ряд */
+  .services__row {
+    gap: 14px;
+    touch-action: pan-x;
+    scroll-snap-type: none;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .services__row .service { flex: 0 0 62vw; }
+  .service__body { padding: 18px 18px 22px; }
+  .service h4 { font-size: 1.15rem; }
 
-  /* мастера — 2 в ряд, буква чуть меньше */
+  /* каталог-окно по центру */
+  .catalog__title { text-align: center; }
+  .cat-group__title { text-align: center; }
+
+  /* мастера — 2 в ряд; если число нечётное, последний по центру */
   .masters__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .masters__grid .master:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 8px);
+    justify-self: center;
+  }
   .master__photo { margin-bottom: 16px; }
   .master__photo::before { font-size: 2.6rem; }
   .master h3 { font-size: 1.2rem; }
@@ -1022,6 +1045,7 @@ section { position: relative; z-index: 2; }
 
 @media (max-width: 360px) {
   .perks, .masters__grid { grid-template-columns: 1fr; }
+  .masters__grid .master:last-child:nth-child(odd) { grid-column: auto; width: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
