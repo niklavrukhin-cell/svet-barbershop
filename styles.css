@@ -345,7 +345,7 @@ section { position: relative; z-index: 2; }
 /* Горизонтальная линия-превью */
 .services__row {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 22px;
   max-width: 1200px;
   margin: 0 auto;
