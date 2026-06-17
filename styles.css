@@ -967,9 +967,9 @@ section { position: relative; z-index: 2; }
 
 /* ===== Телефоны ===== */
 @media (max-width: 600px) {
-  /* общий масштаб — все тексты чуть мельче на телефоне */
-  html { font-size: 91%; }
-  .section-title { font-size: 1.9rem; }
+  /* общий масштаб — все тексты мельче на телефоне */
+  html { font-size: 86%; }
+  .section-title { font-size: 1.7rem; }
   .section-tag { font-size: 0.66rem; letter-spacing: 0.26rem; margin-bottom: 12px; }
   .hero__title-line { font-size: clamp(4rem, 20vw, 6.5rem); }
   .stat__num { font-size: 2.4rem; }
@@ -1056,10 +1056,15 @@ section { position: relative; z-index: 2; }
   /* отзыв */
   .quote blockquote { font-size: 1.5rem; line-height: 1.4; }
 
-  /* контакты: подпись над значением */
-  .contacts__list li { flex-direction: column; gap: 4px; padding-bottom: 14px; }
+  /* контакты: заголовок и текст по центру */
+  .contacts__info { text-align: center; }
+  .contacts__info .section-head { text-align: center; }
+  .contacts__info .section-title { text-align: center; }
+  .contacts__info .section-tag { display: block; }
+  .contacts__lead { margin: 0 auto 30px; text-align: center; }
+  /* контакты: подпись над значением, по центру */
+  .contacts__list li { flex-direction: column; gap: 4px; padding-bottom: 14px; align-items: center; text-align: center; }
   .contacts__list span { min-width: 0; padding-top: 0; }
-  .contacts__lead { margin-bottom: 30px; }
 
   /* блок записи */
   .booking { padding: 38px 22px; }
