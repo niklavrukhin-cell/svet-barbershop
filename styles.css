@@ -873,8 +873,8 @@ section { position: relative; z-index: 2; }
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 .contacts__route-btn:hover {
-  background: var(--light);
-  color: var(--dark, #111);
+  background: rgba(246, 231, 196, 0.08);
+  color: var(--light);
   border-color: var(--light);
 }
 
