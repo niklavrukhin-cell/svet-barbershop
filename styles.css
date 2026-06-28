@@ -859,6 +859,24 @@ section { position: relative; z-index: 2; }
 }
 .contacts__list a { transition: color 0.3s; }
 .contacts__list a:hover { color: var(--light); }
+.contacts__list li.contacts__route { border-bottom: none; padding-bottom: 0; }
+.contacts__route-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 22px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.contacts__route-btn:hover {
+  background: var(--light);
+  color: var(--dark, #111);
+  border-color: var(--light);
+}
 
 /* ===== Блок онлайн-записи ===== */
 .booking {

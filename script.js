@@ -170,10 +170,16 @@ const contactsList = document.getElementById("contactsList");
 function renderContacts() {
   const c = content.contacts || {};
   const rows = [];
-  if (c.address) rows.push(`<li><span>Адрес</span> ${escapeHtml(c.address)}</li>`);
+  if (c.address) {
+    const addr = c.mapUrl
+      ? `<a href="${escapeHtml(c.mapUrl)}" target="_blank" rel="noopener">${escapeHtml(c.address)}</a>`
+      : escapeHtml(c.address);
+    rows.push(`<li><span>Адрес</span> ${addr}</li>`);
+  }
   if (c.phone) rows.push(`<li><span>Телефон</span> <a href="${telHref(c.phone)}">${escapeHtml(c.phone)}</a></li>`);
   if (c.telegram) rows.push(`<li><span>Telegram</span> <a href="${escapeHtml(c.telegramUrl || "#")}" target="_blank" rel="noopener">${escapeHtml(c.telegram)}</a></li>`);
   if (c.bookingUrl) rows.push(`<li><span>Запись</span> <a href="${escapeHtml(c.bookingUrl)}" target="_blank" rel="noopener">онлайн через YClients</a></li>`);
+  if (c.routeUrl) rows.push(`<li class="contacts__route"><a class="contacts__route-btn" href="${escapeHtml(c.routeUrl)}" target="_blank" rel="noopener">Как доехать →</a></li>`);
   contactsList.innerHTML = rows.join("");
 
   // телефон в блоке записи
@@ -498,6 +504,8 @@ function fillPanel() {
   document.getElementById("ac_telegram").value = c.telegram || "";
   document.getElementById("ac_telegramUrl").value = c.telegramUrl || "";
   document.getElementById("ac_bookingUrl").value = c.bookingUrl || "";
+  document.getElementById("ac_mapUrl").value = c.mapUrl || "";
+  document.getElementById("ac_routeUrl").value = c.routeUrl || "";
   document.getElementById("ao_heroSub").value = (content.hero && content.hero.sub) || "";
   const r = content.review || {};
   document.getElementById("ao_reviewText").value = r.text || "";
@@ -638,6 +646,8 @@ function readContactsFromPanel() {
     telegram: document.getElementById("ac_telegram").value.trim(),
     telegramUrl: document.getElementById("ac_telegramUrl").value.trim(),
     bookingUrl: document.getElementById("ac_bookingUrl").value.trim(),
+    mapUrl: document.getElementById("ac_mapUrl").value.trim(),
+    routeUrl: document.getElementById("ac_routeUrl").value.trim(),
   };
 }
 

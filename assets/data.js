@@ -19,7 +19,9 @@ window.DEFAULT_CONTENT = {
     phone: "+7 (966) 979-11-00",
     telegram: "@SvetHairMoscow",
     telegramUrl: "https://t.me/SvetHairMoscow",
-    bookingUrl: "https://n365899.yclients.com"
+    bookingUrl: "https://n365899.yclients.com",
+    mapUrl: "https://yandex.ru/maps/213/moscow/?indoorLevel=1&ll=37.662156%2C55.751913&mode=poi&poi%5Bpoint%5D=37.662154%2C55.751916&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D68361411731&z=17",
+    routeUrl: "https://yandex.ru/maps/213/moscow/?indoorLevel=1&ll=37.662156%2C55.751913&mode=routes&rtext=~55.751913%2C37.662156&rtt=auto&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DIgoNDKYWQhX1AV9C&z=17"
   },
   hero: {
     sub: "Барбершоп на Чкаловской. Стрижка, борода и королевское бритьё<br />от мастеров, к которым возвращаются годами."
