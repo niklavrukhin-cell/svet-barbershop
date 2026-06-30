@@ -861,21 +861,24 @@ section { position: relative; z-index: 2; }
 .contacts__list a:hover { color: var(--light); }
 .contacts__list li.contacts__route { border-bottom: none; padding-bottom: 0; }
 .contacts__route-btn {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   align-items: center;
-  gap: 6px;
-  padding: 12px 22px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 32px;
+  border: 1.5px solid var(--light);
+  border-radius: 100px;
+  color: var(--light);
   font-size: 0.82rem;
-  letter-spacing: 0.06rem;
+  font-weight: 600;
+  letter-spacing: 0.14rem;
   text-transform: uppercase;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 .contacts__route-btn:hover {
-  background: rgba(246, 231, 196, 0.08);
-  color: var(--light);
-  border-color: var(--light);
+  background: var(--light);
+  color: #111;
 }
 
 /* ===== Яндекс: карта и отзывы ===== */
