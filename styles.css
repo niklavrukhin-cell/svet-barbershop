@@ -877,8 +877,8 @@ section { position: relative; z-index: 2; }
   transition: background 0.3s, color 0.3s;
 }
 .contacts__route-btn:hover {
-  background: var(--light);
-  color: #111;
+  background: rgba(246, 231, 196, 0.12);
+  color: var(--light);
 }
 
 /* ===== Яндекс: карта и отзывы ===== */
