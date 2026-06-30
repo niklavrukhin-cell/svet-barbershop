@@ -915,9 +915,26 @@ section { position: relative; z-index: 2; }
 }
 .ymaps__source:hover { color: var(--light); }
 
+.ymaps__card--reviews {
+  max-width: 760px;
+  margin: 0 auto;
+  min-height: 560px;
+}
+.ymaps__card--reviews .ymaps__frame { min-height: 560px; }
+
+/* карта в блоке контактов (раздел 03) */
+.contacts__map { min-height: 460px; }
+.contacts__map .ymaps__frame { min-height: 460px; }
+
+/* кнопка «Записаться онлайн» в списке контактов */
+.contacts__list li.contacts__cta { border-bottom: none; padding-bottom: 0; }
+.contacts__cta-btn { width: 100%; text-align: center; }
+
 @media (max-width: 900px) {
   .ymaps__grid { grid-template-columns: 1fr; }
   .ymaps { padding: 60px 5vw; }
+  .ymaps__card--reviews { min-height: 480px; }
+  .ymaps__card--reviews .ymaps__frame { min-height: 480px; }
 }
 
 /* ===== Блок онлайн-записи ===== */

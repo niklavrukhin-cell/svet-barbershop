@@ -178,8 +178,8 @@ function renderContacts() {
   }
   if (c.phone) rows.push(`<li><span>Телефон</span> <a href="${telHref(c.phone)}">${escapeHtml(c.phone)}</a></li>`);
   if (c.telegram) rows.push(`<li><span>Telegram</span> <a href="${escapeHtml(c.telegramUrl || "#")}" target="_blank" rel="noopener">${escapeHtml(c.telegram)}</a></li>`);
-  if (c.bookingUrl) rows.push(`<li><span>Запись</span> <a href="${escapeHtml(c.bookingUrl)}" target="_blank" rel="noopener">онлайн через YClients</a></li>`);
   if (c.routeUrl) rows.push(`<li class="contacts__route"><a class="contacts__route-btn" href="${escapeHtml(c.routeUrl)}" target="_blank" rel="noopener">Как доехать →</a></li>`);
+  if (c.bookingUrl) rows.push(`<li class="contacts__cta"><a class="btn btn--solid contacts__cta-btn" href="${escapeHtml(c.bookingUrl)}" target="_blank" rel="noopener" data-book>Записаться онлайн</a></li>`);
   contactsList.innerHTML = rows.join("");
 
   // телефон в блоке записи
