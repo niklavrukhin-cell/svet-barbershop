@@ -878,6 +878,48 @@ section { position: relative; z-index: 2; }
   border-color: var(--light);
 }
 
+/* ===== Яндекс: карта и отзывы ===== */
+.ymaps { padding: 90px 6vw; max-width: 1280px; margin: 0 auto; }
+.ymaps .section-title { margin-bottom: 40px; }
+.ymaps__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+}
+.ymaps__card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-soft);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+.ymaps__frame {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
+  display: block;
+}
+.ymaps__source {
+  display: block;
+  padding: 10px 14px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-decoration: none;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  transition: color 0.3s;
+}
+.ymaps__source:hover { color: var(--light); }
+
+@media (max-width: 900px) {
+  .ymaps__grid { grid-template-columns: 1fr; }
+  .ymaps { padding: 60px 5vw; }
+}
+
 /* ===== Блок онлайн-записи ===== */
 .booking {
   background:
